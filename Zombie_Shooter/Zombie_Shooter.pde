@@ -1,3 +1,4 @@
+// this is a test comment you can delete this
 // Game States
 public enum State
 {
