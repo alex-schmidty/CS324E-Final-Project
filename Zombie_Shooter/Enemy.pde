@@ -17,6 +17,8 @@ public class Enemy
   {
     vel = PVector.sub(player.pos, this.pos);
     vel = PVector.mult(vel.normalize(), 2);
+    if(player.pos.x< pos.x) {sprite.isFacingLeft = true; }
+    else {sprite.isFacingLeft = false;}
     if(collidingWithPlayer())
     {
       player.isDead = true;
