@@ -48,6 +48,11 @@ public class GameStateManager
           textSize(17);
           text("Kill Count:  " + killcount, width-100, height -15);
         }
+        if(round>5)
+        {
+          timer.pauseTimer();
+          state = State.WON;
+        }
         break;
       case WON:
         textSize(50);

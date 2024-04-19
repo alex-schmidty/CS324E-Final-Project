@@ -20,7 +20,7 @@ class Sprite{
     this.size = size;
     this.shouldRemove = false;
     this.shift = shift;
-    this.isFacingLeft = isFacingLeft;
+    this.isFacingLeft = false;
   }
   
   void loadImages(String frameLoader){
