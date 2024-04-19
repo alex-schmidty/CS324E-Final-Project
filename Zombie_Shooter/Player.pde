@@ -37,10 +37,10 @@ public class Player {
   {
     numUpdates +=1;
     // move functionality
-    if (isMovingLeft && pos.x > 0) { this.pos.x -= speed; }
-    if (isMovingRight && pos.x < width) { this.pos.x += speed; }
-    if (isMovingUp && pos.y > 0) { this.pos.y -= speed; }
-    if (isMovingDown && pos.y < height) { this.pos.y += speed; }
+    if (isMovingLeft && pos.x > 2*pwidth) { this.pos.x -= speed; }
+    if (isMovingRight && pos.x < width -pwidth) { this.pos.x += speed; }
+    if (isMovingUp && pos.y > pwidth) { this.pos.y -= speed; }
+    if (isMovingDown && pos.y < height-pwidth) { this.pos.y += speed; }
     if (isShooting && gunTimer.activated())
     {
       PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);

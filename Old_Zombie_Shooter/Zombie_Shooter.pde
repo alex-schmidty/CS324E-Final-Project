@@ -28,7 +28,6 @@ void draw()
 {
   gsm.updateGame();
   gsm.displayGame();  
-  drawEdge();
 }
 
 void keyPressed() 
@@ -38,6 +37,7 @@ void keyPressed()
   else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMovingRight = true;  player.sprite.isFacingLeft = false;}
   else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = true; }
   else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = true;}
+  else if (key == ' ' ) {player.isShooting = true;}
 }
 void keyReleased() {
   if (key == 'a' || key == 'A' || keyCode == LEFT){player.isMovingLeft = false;}
@@ -45,22 +45,4 @@ void keyReleased() {
   else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = false; }
   else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = false;}
   else if (key == ' ' ) {player.isShooting = false;}
-}
-void mousePressed()
-{
-    {player.isShooting = true;}
-}
-void mouseReleased()
-{
-    {player.isShooting = false;}
-}
-
-void drawEdge(){
-  stroke(255,155,72);
-  fill(0,0,0,0);
-  strokeWeight(4);
-  rect(2, 2, width - 4, height - 4);
-  strokeWeight(1);
-  stroke(0);
-  fill(0);
 }
