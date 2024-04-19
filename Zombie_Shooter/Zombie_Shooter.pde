@@ -56,6 +56,7 @@ void mouseReleased()
 }
 
 void drawEdge(){
+  rectMode(CORNER);
   stroke(255,155,72);
   fill(0,0,0,0);
   strokeWeight(4);
