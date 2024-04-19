@@ -14,7 +14,7 @@ public class GameStateManager
         textAlign(CENTER, CENTER);  
         textSize(50);
         fill(255);
-        text("Zombie Attack", width/2, height/2 - 50);
+        text("Galactic Assault", width/2, height/2 - 50);
         fill(200);
         textSize(25);
         text("Click SPACE to begin", width/2, height/2 + 50);
