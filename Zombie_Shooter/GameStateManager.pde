@@ -48,13 +48,9 @@ public class GameStateManager
           textSize(17);
           text("Kill Count:  " + killcount, width-100, height -15);
         }
-        if(round>5)
-        {
-          timer.pauseTimer();
-          state = State.WON;
-        }
         break;
       case WON:
+        fill(255);
         textSize(50);
         textAlign(CENTER, CENTER);
         text("YOU WIN!", width/2, height/2- 50);
@@ -62,6 +58,7 @@ public class GameStateManager
         text("Press R to reset or Q to quit", width/2, height/2 + 50);
         break;
       case LOST:
+        fill(255);
         textSize(50);
         textAlign(CENTER, CENTER);
         text("YOU LOSE!", width/2, height/2- 50);
@@ -91,35 +88,38 @@ public class GameStateManager
         break;
         
       case PLAYING:
-        // update player
-        player.update();
-        // update bullets
-        for (Bullet bullet: bullets){bullet.update();}
-        //update enemies
-        for (Enemy enemy: enemies){enemy.update();}
-        // remove bullets
-        for(int i = 0; i<bullets.size(); i++){if(bullets.get(i).shouldRemove) {bullets.remove(i--); }}
-        // remove enemies
-        for(int i = 0; i<enemies.size(); i++){if(enemies.get(i).hitBullet){enemies.remove(i--); }}
-        
-        // Lose condition
-        if (player.isDead && round <6)
+        if(timer.activated())
         {
-          timer.pauseTimer();
-          state = State.LOST;         
-        }
-        
-        // advance to next round
-        if(enemies.size() ==  0)
-        {
-          round +=1;
-          if(round < 6 && round > 1){ createEnemies(round*2);}
+          // update player
+          player.update();
+          // update bullets
+          for (Bullet bullet: bullets){bullet.update();}
+          //update enemies
+          for (Enemy enemy: enemies){enemy.update();}
+          // remove bullets
+          for(int i = 0; i<bullets.size(); i++){if(bullets.get(i).shouldRemove) {bullets.remove(i--); }}
+          // remove enemies
+          for(int i = 0; i<enemies.size(); i++){if(enemies.get(i).hitBullet){enemies.remove(i--); }}
           
-          //win condition
-          if(round > 5)
+          // Lose condition
+          if (player.isDead && round <6)
           {
-              timer.pauseTimer();
-              state=State.WON;
+            timer.pauseTimer();
+            state = State.LOST;         
+          }
+          
+          // advance to next round
+          if(enemies.size() ==  0)
+          {
+            round +=1;
+            if(round < 6 && round > 1){ createEnemies(round*2);}
+            
+            //win condition
+            if(round > 5)
+            {
+                timer.pauseTimer();
+                state=State.WON;
+            }
           }
         }
         break;

@@ -20,7 +20,7 @@ public class Player {
     numUpdates = 0;
     gunTimer = new Timer(400);
     gunTimer.startTimer();
-    this.sprite = new Sprite("Player", pos, 200, 1.0, new PVector(-50, 50));
+    this.sprite = new Sprite("Player", pos, 200, 1.0);
   }
   public void reset()
   {
@@ -31,7 +31,7 @@ public class Player {
     gunTimer = new Timer(400);
     gunTimer.startTimer();
     this.sprite.shouldRemove = true;
-    this.sprite = new Sprite("Player", pos, 200, 1.0, new PVector(-50, 50));
+    this.sprite = new Sprite("Player", pos, 200, 1.0);
   }
   public void update()
   {
