@@ -18,8 +18,6 @@ public class GameStateManager
       fill(255);
       image(logo, width/2 - logo.width/2, 15);
       //text("Zombie Attack", width/2, height/2 - 50);
-
-
       //fill(200);
       //textSize(25);
       //text("Click SPACE to begin", width/2, height/2 + 50);
@@ -28,18 +26,21 @@ public class GameStateManager
       fill(170, 255, 255);
       text("Select Starting Level:", width/2, height/2 - 100);
 
+      int padding = 50; // Adjust padding as needed
+
       // Display difficulty options
       for (int i = 1; i <= 5; i++) {
+        int x = width/2 + (i-3)*padding + padding/2 - 25; // add padding around the numbers
         if (
-          mouseX > width/2 + (i-3)*50 &&
-          mouseX < width/2 + (i-2)*50 &&
-          mouseY > height/2 - 50 &&
-          mouseY < height/2 + 50) {
-          fill(0, 255, 0); // Highlight the selected difficulty
+          mouseX > x - padding/2 &&
+          mouseX < x + padding/2 &&
+          mouseY > height/2 - padding/2 &&
+          mouseY < height/2 + padding/2) {
+          fill(0, 255, 0); //highlight
         } else {
           fill(255);
         }
-        text(i, width/2 + (i-3)*50, height/2);
+        text(i, x, height/2); //display number
       }
 
 
@@ -78,6 +79,7 @@ public class GameStateManager
       }
       break;
     case WON:
+      fill(255);
       textSize(50);
       textAlign(CENTER, CENTER);
       text("YOU WIN!", width/2, height/2- 50);
@@ -85,6 +87,7 @@ public class GameStateManager
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
       break;
     case LOST:
+      fill(255);
       textSize(50);
       textAlign(CENTER, CENTER);
       text("YOU LOSE!", width/2, height/2- 50);
