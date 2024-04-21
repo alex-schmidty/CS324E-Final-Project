@@ -8,7 +8,7 @@ class Sprite{
   boolean shouldRemove, isFacingLeft;
   PVector shift, pos;
 
-  Sprite(String frameLoader, PVector pos, int animSpeed, Float size){
+  Sprite(String frameLoader, PVector pos, int animSpeed, float size){
     allSprites.add(this);
     this.images = new ArrayList<PImage>();
     loadImages(frameLoader);
@@ -34,12 +34,16 @@ class Sprite{
     pushMatrix();   
     if(isFacingLeft)
     {
-      translate(this.pos.x + this.images.get(this.currentImage).width/2, this.pos.y - this.images.get(this.currentImage).height/2);
+      
+      translate(this.pos.x + size*this.images.get(this.currentImage).width/2, this.pos.y - size*this.images.get(this.currentImage).height/2);
+      //translate(this.pos.x, this.pos.y);
       scale(- this.size, this.size);
+      
     }
     else
     {
-      translate(this.pos.x - this.images.get(this.currentImage).width/2, this.pos.y - this.images.get(this.currentImage).height/2);
+      translate(this.pos.x - size*this.images.get(this.currentImage).width/2, this.pos.y - size*this.images.get(this.currentImage).height/2);
+      //translate(this.pos.x, this.pos.y);
       scale(this.size, this.size);
     }
     image(this.images.get(this.currentImage), 0, 0);

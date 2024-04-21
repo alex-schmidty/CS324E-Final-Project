@@ -16,7 +16,7 @@ Timer timer; // all classes run on the same timer that way we can start and stop
 GameStateManager gsm;
 
 void setup() {
-  size(800, 800);
+  fullScreen();
   enemies = new ArrayList<Enemy>();
   bullets = new ArrayList<Bullet>();
   player = new Player();
@@ -26,8 +26,8 @@ void setup() {
 
 void draw()
 {
+  gsm.displayGame(); 
   gsm.updateGame();
-  gsm.displayGame();  
   drawEdge();
 }
 

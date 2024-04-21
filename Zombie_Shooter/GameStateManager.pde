@@ -17,10 +17,6 @@ public class GameStateManager
       textSize(50);
       fill(255);
       image(logo, width/2 - logo.width/2, 15);
-      //text("Zombie Attack", width/2, height/2 - 50);
-      //fill(200);
-      //textSize(25);
-      //text("Click SPACE to begin", width/2, height/2 + 50);
       textAlign(CENTER, CENTER);
       textSize(24);
       fill(170, 255, 255);
@@ -29,7 +25,8 @@ public class GameStateManager
       int padding = 50; // Adjust padding as needed
 
       // Display difficulty options
-      for (int i = 1; i <= 5; i++) {
+      for (int i = 1; i <= 5; i++) 
+      {
         int x = width/2 + (i-3)*padding + padding/2 - 25; // add padding around the numbers
         if (
           mouseX > x - padding/2 &&
@@ -42,11 +39,6 @@ public class GameStateManager
         }
         text(i, x, height/2); //display number
       }
-
-
-
-
-
       if (killcntmax != 0)
       {
         fill(255, 0, 0);
@@ -107,22 +99,25 @@ public class GameStateManager
     switch(state)
     {
     case START:
-      if (mousePressed) {
-        for (int i = 1; i <= 5; i++) {
-          if (mouseX > width/2 + (i-3)*50 &&
-            mouseX < width/2 + (i-2)*50 &&
-            mouseY > height/2 - 50 &&
-            mouseY < height/2 + 50) {
-
-            createEnemies(2);
-            state = State.PLAYING;
-            round = i;
-            timer.startTimer();
-            println(i);
-          } // end of if
-        } // end of for loop
+      if (mousePressed) 
+      {
+       
+        for (int i = 1; i <= 5; i++) 
+        {
+          int padding = 50; // Adjust padding as needed
+          int x = width/2 + (i-3)*padding + padding/2 - 25; // add padding around the numbers
+          if (mouseX > x - padding/2 &&
+              mouseX < x + padding/2 &&
+              mouseY > height/2 - padding/2 &&
+              mouseY < height/2 + padding/2)
+            {
+              createEnemies(round*3);
+              state = State.PLAYING;
+              round = i-1;
+              timer.startTimer();
+            }
+        }
       }
-
       break;
 
     case PLAYING:

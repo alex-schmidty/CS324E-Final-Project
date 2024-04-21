@@ -2,7 +2,9 @@ public class Enemy
 {
   public PVector pos;
   public float ewidth = 50;
+  public float eheight = 100;
   public PVector vel;
+  public float speed;
   public boolean hitBullet = false;
   public boolean hitPlayer = false;
   public boolean isDead = false;
@@ -15,8 +17,9 @@ public class Enemy
   
   public void update()
   {
+        
     vel = PVector.sub(player.pos, this.pos);
-    vel = PVector.mult(vel.normalize(), 2);
+    vel = PVector.mult(vel.normalize(), speed);
     if(player.pos.x< pos.x) {sprite.isFacingLeft = true; }
     else {sprite.isFacingLeft = false;}
     if(collidingWithPlayer())
@@ -34,7 +37,7 @@ public class Enemy
     for(Bullet b: bullets)
     {
       if(b.pos.x<=pos.x+ewidth/2 && b.pos.x>= pos.x-ewidth/2
-        && b.pos.y<=pos.y+ewidth/2 && b.pos.y>= pos.y-ewidth/2 )
+        && b.pos.y<=pos.y+eheight/2 && b.pos.y>= pos.y-eheight/2 )
       {
         killcount +=1;
         b.shouldRemove = true;
@@ -45,19 +48,21 @@ public class Enemy
       }
       }
     }
+    
   }
   
   private void enemyType(int type){
     if(type == 1){
       this.sprite = new Sprite("Zombie1Walk", this.pos, 100, .3);
+      speed = 2;
     } else if(type == 2){
       this.sprite = new Sprite("Zombie1", this.pos, 100, .3);
+      speed = 4;
     }
   }
   
   public boolean collidingWithPlayer()
   {
-    float eheight = this.ewidth;
     PVector[] ePoints = {new PVector(pos.x-ewidth/2, pos.y - eheight/2),
                          new PVector(pos.x+ewidth/2, pos.y - eheight/2), 
                          new PVector(pos.x-ewidth/2, pos.y + eheight/2), 
