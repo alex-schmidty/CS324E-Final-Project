@@ -196,22 +196,4 @@ public class GameStateManager
     state = State.START;
     round = 0;
   }
-
-  public void mousePressed() {
-    if (state == State.START) {
-      // Check if the user clicked on a difficulty option
-      for (int i = 1; i <= 5; i++) {
-        if (mouseX > width/2 + (i-3)*50 &&
-          mouseX < width/2 + (i-2)*50 &&
-          mouseY > height/2 - 50 &&
-          mouseY < height/2 + 50) {
-          //selectedDifficulty = i;
-          //gameRunning = true; // Start the game
-          ////gameManager.startGame(selectedDifficulty); // Start the game with the selected difficulty
-          //break;
-        } // end of if
-      } // end of for loop
-    }
-  }
 }
-
