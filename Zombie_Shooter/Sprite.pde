@@ -8,7 +8,7 @@ class Sprite{
   boolean shouldRemove, isFacingLeft;
   PVector shift, pos;
 
-  Sprite(String frameLoader, PVector pos, int animSpeed, Float size, PVector shift){
+  Sprite(String frameLoader, PVector pos, int animSpeed, Float size){
     allSprites.add(this);
     this.images = new ArrayList<PImage>();
     loadImages(frameLoader);
@@ -19,8 +19,7 @@ class Sprite{
     this.timer.reset();
     this.size = size;
     this.shouldRemove = false;
-    this.shift = shift;
-    this.isFacingLeft = isFacingLeft;
+    this.isFacingLeft = false;
   }
   
   void loadImages(String frameLoader){
@@ -32,18 +31,22 @@ class Sprite{
   }
   
   void display(){
-    pushMatrix();
-    translate(this.pos.x + shift.x, this.pos.y - shift.y);
+    pushMatrix();   
     if(isFacingLeft)
+    {
+      translate(this.pos.x + this.images.get(this.currentImage).width/2, this.pos.y - this.images.get(this.currentImage).height/2);
       scale(- this.size, this.size);
+    }
     else
+    {
+      translate(this.pos.x - this.images.get(this.currentImage).width/2, this.pos.y - this.images.get(this.currentImage).height/2);
       scale(this.size, this.size);
+    }
     image(this.images.get(this.currentImage), 0, 0);
     popMatrix();
   }
   
   void update(){
-    //this.timer.update();
     if (this.timer.activated()){
       this.currentImage = (currentImage + 1) % numImages;
       this.timer.reset();
