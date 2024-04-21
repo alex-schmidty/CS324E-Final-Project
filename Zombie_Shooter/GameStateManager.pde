@@ -9,7 +9,7 @@ public class GameStateManager
   }
   public void displayGame()
   {
-    background(0);
+    background(5);
     switch(state)
     {
     case START:
@@ -19,6 +19,13 @@ public class GameStateManager
       image(logo, width/2 - logo.width/2, 15);
       textAlign(CENTER, CENTER);
       textSize(24);
+      fill(255,0,0);
+      text("Quit", 40, 30);
+      if (mouseX > 15 && mouseY > 15 && mouseX < 65 && mouseY < 45){
+          rect(15,15,50,30);
+          fill(0);
+          text("Quit", 40, 30);
+        }
       fill(170, 255, 255);
       text("Select Starting Level:", width/2, height/2 - 100);
 
@@ -56,14 +63,14 @@ public class GameStateManager
         textSize(20);
         text("Move Left: 'A' or left arrow key", width/2+105, height-270);
         text("Move Right: 'D' or right arrow key", width/2+130, height-200);
-        text("Shoot: SPACE bar", width/2, height-130);
+        text("Shoot: Point and click mouse", width/2+95, height-130);
         fill(255);
       }
       break;
     case PLAYING:
       fill(255);
       textSize(25);
-      text("Round " +constrain(round, 0, 5), width/2, height-15);
+      text("Round " +round, width/2, height-15);
       if (killcount != 0)
       {
         textSize(17);
@@ -101,7 +108,9 @@ public class GameStateManager
     case START:
       if (mousePressed) 
       {
-       
+       if (mouseX > 15 && mouseY > 15 && mouseX < 65 && mouseY < 45){
+          exit();
+        }
         for (int i = 1; i <= 5; i++) 
         {
           int padding = 50; // Adjust padding as needed
@@ -114,6 +123,7 @@ public class GameStateManager
               createEnemies(round*3);
               state = State.PLAYING;
               round = i-1;
+              player.pos = new PVector(width/2, height/2);
               timer.startTimer();
             }
         }
@@ -145,7 +155,7 @@ public class GameStateManager
       }
 
       // Lose condition
-      if (player.isDead && round <6)
+      if (player.isDead)
       {
         timer.pauseTimer();
         state = State.LOST;
@@ -155,12 +165,12 @@ public class GameStateManager
       if (enemies.size() ==  0)
       {
         round +=1;
-        if (round < 6 && round > 1) {
+        
           createEnemies(round*2);
-        }
+        
 
         //win condition
-        if (round > 5)
+        if (round > 30)
         {
           timer.pauseTimer();
           state=State.WON;

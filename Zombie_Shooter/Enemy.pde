@@ -90,15 +90,24 @@ public class Enemy
 }
 
 void createEnemies(int num){
-  ArrayList<Integer> xpos = new ArrayList<Integer>();
-  for(int i = 0; i < 10; i++){
-    xpos.add(i*75 +50);
-  }
+  ArrayList<Float> xpos = new ArrayList<Float>();
+  xpos.add(0.0);
+  float middle = width/2;
+  xpos.add(middle);
+  float end = width;
+  xpos.add(end);
+  ArrayList<Float> ypos = new ArrayList<Float>();
+  ypos.add(0.0);
+  float middley = width/2;
+  ypos.add(middley);
+  float endy = width;
+  ypos.add(endy);
+  
   for(int i=0; i<num; i++)
   {
-    int randomxpos = int(random(xpos.size()));
-    Enemy e= new Enemy(xpos.get(randomxpos), 50, ceil(random(2)));
-    xpos.remove(randomxpos);
+    int randomxpos = int(random(3));
+    int randomypos = int(random(3));
+    Enemy e= new Enemy(xpos.get(randomxpos), ypos.get(randomypos), ceil(random(2)));
     e.vel = new PVector(0,random(.8,2.3));
     enemies.add(e);
   }
