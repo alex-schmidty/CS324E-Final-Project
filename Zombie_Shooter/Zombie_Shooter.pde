@@ -49,6 +49,7 @@ void keyReleased() {
 void mousePressed()
 {
     {player.isShooting = true;}
+    gsm.mousePressed();
 }
 void mouseReleased()
 {
