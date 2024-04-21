@@ -49,9 +49,9 @@ public class Enemy
   
   private void enemyType(int type){
     if(type == 1){
-      this.sprite = new Sprite("Bug1", this.pos, 100, .8);
+      this.sprite = new Sprite("Zombie1Walk", this.pos, 100, .3);
     } else if(type == 2){
-      this.sprite = new Sprite("Bug2", this.pos, 100, 1.0);
+      this.sprite = new Sprite("Zombie1", this.pos, 100, .3);
     }
   }
   
