@@ -3,7 +3,7 @@ public class Player {
   public float speed  = 5;
   public PVector pos;
   public float pwidth = 50;
-  public float pheight = 100;
+  public float pheight = 80;
   public boolean isMovingLeft = false,
                  isMovingRight = false,
                  isMovingUp = false,
@@ -61,6 +61,7 @@ public class Player {
       bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
       type = 3;
       shootSound.play(); 
+      
     }
     
     this.sprite.pos.set(pos.x, pos.y);
