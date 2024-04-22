@@ -16,6 +16,7 @@ int killcount = 0;
 int killcntmax = 0;
 
 Player player;
+Reticle reticle;
 Timer timer; // all classes run on the same timer that way we can start and stop the whole thing
 GameStateManager gsm;
 
@@ -24,6 +25,7 @@ void setup() {
   enemies = new ArrayList<Enemy>();
   bullets = new ArrayList<Bullet>();
   player = new Player();
+  reticle = new Reticle(player);
   timer = new Timer(1);
   gsm = new GameStateManager();
   shootSound = new SoundFile(this, "./shootSound.mp3");

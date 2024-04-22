@@ -138,6 +138,7 @@ public class GameStateManager
     case PLAYING:
       // update player
       player.update();
+      reticle.createRet();
       // update bullets
       for (Bullet bullet : bullets) {
         bullet.update();
