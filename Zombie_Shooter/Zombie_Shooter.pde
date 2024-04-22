@@ -1,6 +1,14 @@
 import processing.sound.*;
+import g4p_controls.*;
+
+// adding sound 
 SoundFile shootSound;
 SoundFile zombieSound; 
+
+// gui buttons 
+GTextField nameInput;
+GButton saveButton;
+GButton skipButton;
 
 // Game States
 public enum State
@@ -19,6 +27,8 @@ Reticle reticle;
 Timer timer; // all classes run on the same timer that way we can start and stop the whole thing
 GameStateManager gsm;
 boolean paused = false;
+Leaderboard leaderboard;
+String playerName;
 
 void setup() {
   fullScreen();
@@ -30,7 +40,9 @@ void setup() {
   gsm = new GameStateManager();
   shootSound = new SoundFile(this, "./shootSound.mp3");
   zombieSound = new SoundFile(this, "./zombieSound.mp3");
-  
+  leaderboard = new Leaderboard();
+  leaderboard.loadFromFile("leaderboard.txt");
+  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name  
 }
 
 void draw()
@@ -47,8 +59,7 @@ void draw()
       textSize(25);
       text("Press P to resume", width/2, height/15 + 30);
     }
-
-  
+    playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
 }
 
 void keyPressed() 
@@ -58,6 +69,16 @@ void keyPressed()
   else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMovingRight = true;  player.sprite.isFacingLeft = false;}
   else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = true; }
   else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = true;}
+  
+  // Simulate adding a player to the leaderboard when a key is pressed (for testing purposes)
+  if (key == 'l') {
+    String playerName = "Player " + leaderboard.getLeaderboardSize(); // Generate a default name
+    int playerScore = (int) random(100); // Generate a random score
+    leaderboard.addEntry(playerName, playerScore);
+    leaderboard.saveToFile("leaderboard.txt");
+  }
+  
+  
 }
 void keyReleased() {
   if (key == 'a' || key == 'A' || keyCode == LEFT){player.isMovingLeft = false;}

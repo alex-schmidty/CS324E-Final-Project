@@ -5,6 +5,8 @@ public class GameStateManager
   public int round = 0;
   public int difficulty;
   public boolean pKeyPressed = false; // add a flag to check if p has already been pressed in the current frame
+  private boolean displayLeaderboard = false;
+  public boolean top10; 
 
   public GameStateManager()
   {
@@ -50,6 +52,16 @@ public class GameStateManager
         }
         text(i, x, height/2); //display number
       }
+      
+      // display leaderboard 
+      if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > height/2 + 75 && mouseY < height/2 + 125) {
+        fill(0, 255, 0); // Highlight when hovering
+      } else {
+        fill(255);
+      }
+      text("Leaderboard", width/2, height/2 + 100);
+      
+      
       if (killcntmax != 0)
       {
         fill(255, 0, 0);
@@ -72,6 +84,10 @@ public class GameStateManager
         text("Shoot: Point and click mouse", width/2+130, height-130);
         fill(255);
       }
+      
+       if (displayLeaderboard) {
+        leaderboard.display();
+      }
       break;
     case PLAYING:
       fill(255);
@@ -90,6 +106,9 @@ public class GameStateManager
       text("YOU WIN!", width/2, height/2- 50);
       textSize(20);
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
+      if (leaderboard.top10()) {
+        text("Congratulations! You made it to the leaderboard " + playerName, width/2, height/2 + 100);
+      }
       break;
     case LOST:
       fill(255);
@@ -98,6 +117,9 @@ public class GameStateManager
       text("YOU LOSE!", width/2, height/2- 50);
       textSize(20);
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
+      if (leaderboard.top10()) {
+        text("Congratulations! You made it to the leaderboard " + playerName, width/2, height/2 + 100);
+      }
       break;
     }
     //display everything
@@ -114,7 +136,14 @@ public class GameStateManager
     case START:
       if (mousePressed)
       {
-        if (mouseX > 15 && mouseY > 15 && mouseX < 65 && mouseY < 45) {
+        if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > height/2 + 75 && mouseY < height/2 + 125) {
+          displayLeaderboard = true; 
+        }
+        // undisplays the leaderboard
+        else if (mouseX > width/2 - 50 && mouseX < width/2 + 50 && mouseY > height/2 + 225 && mouseY < height/2 + 275){
+          displayLeaderboard = false; 
+        }
+        else if (mouseX > 15 && mouseY > 15 && mouseX < 65 && mouseY < 45) {
           exit();
         }
         for (int i = 1; i <= 5; i++)
@@ -214,6 +243,7 @@ public class GameStateManager
         resetGame();
       }
       if (keyPressed && key == 'q'|| key =='Q') {
+        resetGame();
         exit();
       }
       break;
@@ -223,6 +253,9 @@ public class GameStateManager
 
   public void resetGame()
   {
+    leaderboard.addEntry(playerName, killcount);
+    leaderboard.saveToFile("leaderboard.txt");
+    
     player.reset();
     bullets.clear();
     for (int i = enemies.size() - 1; i >= 0; i--) {
@@ -234,5 +267,6 @@ public class GameStateManager
     killcount = 0;
     state = State.START;
     round = 0;
+    top10 = false; 
   }
 }
