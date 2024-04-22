@@ -28,9 +28,4 @@ public class Timer
     else return false;
   }
   
-  void reset(){
-     //this.time = 0;
-     this.lastCheck = millis();
-     this.running = true;
-  }
 }

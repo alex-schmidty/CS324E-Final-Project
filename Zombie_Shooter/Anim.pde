@@ -9,7 +9,7 @@ class Anim extends Sprite{
       if(this.currentImage > numImages - 1){
         this.shouldRemove = true;
       }
-      this.timer.reset();
+      this.timer.startTimer();
     }
   }
 }

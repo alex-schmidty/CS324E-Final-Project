@@ -21,7 +21,7 @@ class Sprite{
     this.currentImage = 0;
     this.pos = pos;
     this.timer = new Timer(animSpeed);
-    this.timer.reset();
+    this.timer.startTimer();
     this.size = size;
     this.shouldRemove = false;
     this.isFacingLeft = false;
@@ -78,7 +78,7 @@ class Sprite{
   {
     if (this.timer.activated()){
       this.currentImage = (currentImage + 1) % numImages;
-      this.timer.reset();
+      this.timer.startTimer();
     }
   }
 }

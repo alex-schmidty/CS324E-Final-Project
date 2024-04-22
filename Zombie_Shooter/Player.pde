@@ -39,11 +39,6 @@ public class Player {
   }
   public void update()
   {
-    rectMode(CENTER);
-    stroke(255);
-    noFill();
-    strokeWeight(2);
-    rect(pos.x, pos.y, pwidth, pheight);
     //playerType(type);
     numUpdates +=1;
     // move functionality
