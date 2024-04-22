@@ -14,11 +14,11 @@ ArrayList<Enemy> enemies;
 boolean playing  = false;
 int killcount = 0;
 int killcntmax = 0;
-
 Player player;
 Reticle reticle;
 Timer timer; // all classes run on the same timer that way we can start and stop the whole thing
 GameStateManager gsm;
+boolean paused = false;
 
 void setup() {
   fullScreen();
@@ -38,6 +38,17 @@ void draw()
   gsm.displayGame(); 
   gsm.updateGame();
   drawEdge();
+  if (paused) {
+      rect(0, 0, width, height);
+      fill(255, 0, 0);
+      textSize(50);
+      text("Paused", width/2, height/2);
+      fill(255);
+      textSize(25);
+      text("Press P to resume", width/2, height/15 + 30);
+    }
+
+  
 }
 
 void keyPressed() 
