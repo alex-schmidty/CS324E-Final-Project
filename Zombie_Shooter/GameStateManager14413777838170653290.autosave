@@ -2,8 +2,6 @@ public class GameStateManager
 {
   public State state;
   public PImage logo;
-  public int round = 0;
-  public int difficulty;
   public GameStateManager()
   {
     this.state= State.START;
@@ -29,7 +27,7 @@ public class GameStateManager
           text("Quit", 40, 30);
         }
       fill(170, 255, 255);
-      text("Select difficulty:", width/2, height/2 - 100);
+      text("Select Starting Level:", width/2, height/2 - 100);
 
       int padding = 50; // Adjust padding as needed
 
@@ -63,11 +61,9 @@ public class GameStateManager
         fill(0);
         textAlign(RIGHT);
         textSize(20);
-        text("Move Up: 'W' or left arrow key", width/2+130, height-270);
-        text("Move Left: 'A' or left arrow key", width/2+130, height-250);
-        text("Move Down: 'S' or right arrow key", width/2+130, height-230);
-        text("Move Right: 'D' or right arrow key", width/2+130, height-210);
-        text("Shoot: Point and click mouse", width/2+130, height-130);
+        text("Move Left: 'A' or left arrow key", width/2+105, height-270);
+        text("Move Right: 'D' or right arrow key", width/2+130, height-200);
+        text("Shoot: Point and click mouse", width/2+95, height-130);
         fill(255);
       }
       break;
@@ -124,12 +120,11 @@ public class GameStateManager
               mouseY > height/2 - padding/2 &&
               mouseY < height/2 + padding/2)
             {
+              createEnemies(round*3);
               state = State.PLAYING;
-              difficulty = i;
+              round = i-1;
               player.pos = new PVector(width/2, height/2);
               timer.startTimer();
-              createEnemies(difficulty*3);
-              break;
             }
         }
       }
@@ -170,8 +165,10 @@ public class GameStateManager
       if (enemies.size() ==  0)
       {
         round +=1;
-        createEnemies(round*difficulty*3);
         
+          createEnemies(round*2);
+        
+
         //win condition
         if (round > 30)
         {
