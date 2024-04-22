@@ -60,19 +60,10 @@ public class Player {
       PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
       bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
       type = 3;
-      //shootSound.play(); 
+      shootSound.play(); 
     }
     
     this.sprite.pos.set(pos.x, pos.y);
     
   }
-  //private void playerType(int type){
-  //  if(type == 1){
-  //    this.sprite = idleSprite;
-  //  } else if(type == 2){
-  //    this.sprite = idleSprite;
-  //  } else if(type == 3){
-  //    this.sprite = idleSprite;
-  //  }
-  //}
 }

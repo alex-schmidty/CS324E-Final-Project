@@ -40,7 +40,7 @@ public class Enemy
       if(b.pos.x<=pos.x+ewidth/2 && b.pos.x>= pos.x-ewidth/2
         && b.pos.y<=pos.y+eheight/2 && b.pos.y>= pos.y-eheight/2 )
       {
-        //zombieSound.play();
+        zombieSound.play();
         killcount +=1;
         b.shouldRemove = true;
         this.sprite.shouldRemove = true;
