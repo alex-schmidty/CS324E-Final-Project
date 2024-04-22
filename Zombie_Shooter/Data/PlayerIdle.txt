@@ -4,4 +4,3 @@ PlayerIdle2
 PlayerIdle3
 PlayerIdle4
 PlayerIdle5
-PlayerIdle6
