@@ -56,22 +56,10 @@ class Sprite{
     else
     {
       translate(this.pos.x - size*img.width/2, this.pos.y - size*img.height/2);
-      scale(this.size, this.size);
+      scale(this.size);
     }
     image(img, 0, 0);
     popMatrix();
-    //if(isFacingLeft)
-    //{      
-    //  translate(this.pos.x + size*this.images.get(this.currentImage).width/2, this.pos.y - size*this.images.get(this.currentImage).height/2);
-    //  scale(- this.size, this.size); 
-    //}
-    //else
-    //{
-    //  translate(this.pos.x - size*this.images.get(this.currentImage).width/2, this.pos.y - size*this.images.get(this.currentImage).height/2);
-    //  scale(this.size, this.size);
-    //}
-    //image(this.images.get(this.currentImage), 0, 0);
-    //popMatrix();
   }
   
   void update()
@@ -83,15 +71,18 @@ class Sprite{
   }
 }
 
-void handleSprites()
+void displaySprites()
 {
   for(Sprite sprite: allSprites)
   {
     sprite.display();
-    sprite.update();
   }
+}
+void updateSprites()
+{
   for(int i = 0; i<allSprites.size(); i++)
   {
-      if(allSprites.get(i).shouldRemove){ allSprites.remove(i--); }
+     allSprites.get(i).update();
+     if(allSprites.get(i).shouldRemove){ allSprites.remove(i--); }
   }
 }

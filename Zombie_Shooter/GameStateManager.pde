@@ -103,7 +103,7 @@ public class GameStateManager
     {
       bullet.display();
     }
-    handleSprites();
+    displaySprites();
   }
   public void updateGame()
   {
@@ -136,50 +136,54 @@ public class GameStateManager
       break;
 
     case PLAYING:
-      // update player
-      player.update();
-      reticle.createRet();
-      // update bullets
-      for (Bullet bullet : bullets) {
-        bullet.update();
-      }
-      //update enemies
-      for (Enemy enemy : enemies) {
-        enemy.update();
-      }
-      // remove bullets
-      for (int i = 0; i<bullets.size(); i++) {
-        if (bullets.get(i).shouldRemove) {
-          bullets.remove(i--);
-        }
-      }
-      // remove enemies
-      for (int i = 0; i<enemies.size(); i++) {
-        if (enemies.get(i).hitBullet) {
-          enemies.remove(i--);
-        }
-      }
-
-      // Lose condition
-      if (player.isDead)
+      if(timer.activated())
       {
-        timer.pauseTimer();
-        state = State.LOST;
-      }
-
-      // advance to next round
-      if (enemies.size() ==  0)
-      {
-        round +=1;
-        createEnemies(round*difficulty*3);
-        
-        //win condition
-        if (round > 30)
+        // update player
+        player.update();
+        reticle.createRet();
+        // update bullets
+        for (Bullet bullet : bullets) {
+          bullet.update();
+        }
+        //update enemies
+        for (Enemy enemy : enemies) {
+          enemy.update();
+        }
+        // remove bullets
+        for (int i = 0; i<bullets.size(); i++) {
+          if (bullets.get(i).shouldRemove) {
+            bullets.remove(i--);
+          }
+        }
+        // remove enemies
+        for (int i = 0; i<enemies.size(); i++) {
+          if (enemies.get(i).hitBullet) {
+            enemies.remove(i--);
+          }
+        }
+  
+        // Lose condition
+        if (player.isDead)
         {
           timer.pauseTimer();
-          state=State.WON;
+          state = State.LOST;
+        }
+  
+        // advance to next round
+        if (enemies.size() ==  0)
+        {
+          round +=1;
+          createEnemies(round*difficulty*3);
+          
+          //win condition
+          if (round > 30)
+          {
+            timer.pauseTimer();
+            state=State.WON;
+          }
         }
       }
+      
       break;
 
     case WON: // treats WON and LOST the same
@@ -192,6 +196,7 @@ public class GameStateManager
       }
       break;
     }
+    updateSprites();
   }
 
   public void resetGame()
