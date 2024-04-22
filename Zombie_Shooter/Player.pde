@@ -2,7 +2,8 @@ public class Player {
   public Timer gunTimer;
   public float speed  = 5;
   public PVector pos;
-  public float pwidth;
+  public float pwidth = 50;
+  public float pheight = 100;
   public boolean isMovingLeft = false,
                  isMovingRight = false,
                  isMovingUp = false,
@@ -19,7 +20,6 @@ public class Player {
   public Player()
   {
     pos = new PVector( width/2, height-90);
-    pwidth = 50;
     numUpdates = 0;
     gunTimer = new Timer(400);
     gunTimer.startTimer();
@@ -39,6 +39,11 @@ public class Player {
   }
   public void update()
   {
+    rectMode(CENTER);
+    stroke(255);
+    noFill();
+    strokeWeight(2);
+    rect(pos.x, pos.y, pwidth, pheight);
     //playerType(type);
     numUpdates +=1;
     // move functionality
@@ -53,7 +58,6 @@ public class Player {
     if (isShooting && gunTimer.activated())
     {
       PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
-      bulDir = PVector.mult(bulDir.normalize(), 20);
       bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
       type = 3;
     }

@@ -10,7 +10,7 @@ ArrayList<Enemy> enemies;
 boolean playing  = false;
 int killcount = 0;
 int killcntmax = 0;
-int round = 0;
+
 Player player;
 Timer timer; // all classes run on the same timer that way we can start and stop the whole thing
 GameStateManager gsm;

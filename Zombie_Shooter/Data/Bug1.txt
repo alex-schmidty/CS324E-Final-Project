@@ -1,8 +1,0 @@
-Bug1_1
-Bug1_2
-Bug1_1
-Bug1_2
-Bug1_1
-Bug1_2
-Bug1_3
-Bug1_2

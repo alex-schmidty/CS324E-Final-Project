@@ -13,6 +13,7 @@ public class Enemy
   {
     this.pos = new PVector(x,y);
     enemyType(type);
+    this.vel = new PVector(1,0);
   }
   
   public void update()
@@ -90,25 +91,48 @@ public class Enemy
 }
 
 void createEnemies(int num){
-  ArrayList<Float> xpos = new ArrayList<Float>();
-  xpos.add(0.0);
-  float middle = width/2;
-  xpos.add(middle);
-  float end = width;
-  xpos.add(end);
-  ArrayList<Float> ypos = new ArrayList<Float>();
-  ypos.add(0.0);
-  float middley = width/2;
-  ypos.add(middley);
-  float endy = width;
-  ypos.add(endy);
+  //ArrayList<Float> xpos = new ArrayList<Float>();
+  //xpos.add(0.0);
+  //float middle = width/2;
+  //xpos.add(middle);
+  //float end = width;
+  //xpos.add(end);
+  //ArrayList<Float> ypos = new ArrayList<Float>();
+  //ypos.add(0.0);
+  //float middley = width/2;
+  //ypos.add(middley);
+  //float endy = width;
+  //ypos.add(endy);
   
+  //for(int i=0; i<num; i++)
+  //{
+  //  int randomxpos = int(random(3));
+  //  int randomypos = int(random(3));
+  //  Enemy e= new Enemy(xpos.get(randomxpos), ypos.get(randomypos), ceil(random(2)));
+  //  e.vel = new PVector(0,random(.8,2.3));
+  //  enemies.add(e);
+  //}
   for(int i=0; i<num; i++)
   {
-    int randomxpos = int(random(3));
-    int randomypos = int(random(3));
-    Enemy e= new Enemy(xpos.get(randomxpos), ypos.get(randomypos), ceil(random(2)));
-    e.vel = new PVector(0,random(.8,2.3));
-    enemies.add(e);
+    float x = random(-100, width+100);
+    float y = 0;
+    if( x<= 0 || x>=width)
+    {
+      y = random(-100, height+100);
+    }
+    else
+    {
+      if((int)random(2) == 1)
+      {
+        y = random(-100,0); 
+      }
+      else
+      {
+        y = random(height,height+100);
+      }
+      
+    }
+    
+    enemies.add(new Enemy(x,y, ceil(random(2))));
   }
 }
