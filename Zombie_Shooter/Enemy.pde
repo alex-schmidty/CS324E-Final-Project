@@ -40,7 +40,7 @@ public class Enemy
       if(b.pos.x<=pos.x+ewidth/2 && b.pos.x>= pos.x-ewidth/2
         && b.pos.y<=pos.y+eheight/2 && b.pos.y>= pos.y-eheight/2 )
       {
-        zombieSound.play();
+        //zombieSound.play();
         killcount +=1;
         b.shouldRemove = true;
         this.sprite.shouldRemove = true;
@@ -69,10 +69,10 @@ public class Enemy
                          new PVector(pos.x+ewidth/2, pos.y - eheight/2), 
                          new PVector(pos.x-ewidth/2, pos.y + eheight/2), 
                          new PVector(pos.x+ewidth/2, pos.y + eheight/2)};
-    PVector[] pPoints = {new PVector(player.pos.x-player.pwidth/2, player.pos.y-player.pwidth/2),
-                         new PVector(player.pos.x+player.pwidth/2, player.pos.y-player.pwidth/2), 
-                         new PVector(player.pos.x-player.pwidth/2, player.pos.y+player.pwidth/2),
-                         new PVector(player.pos.x+player.pwidth/2, player.pos.y+player.pwidth/2)};
+    PVector[] pPoints = {new PVector(player.pos.x-player.pwidth/2, player.pos.y-player.pheight/2),
+                         new PVector(player.pos.x+player.pwidth/2, player.pos.y-player.pheight/2), 
+                         new PVector(player.pos.x-player.pwidth/2, player.pos.y+player.pheight/2),
+                         new PVector(player.pos.x+player.pwidth/2, player.pos.y+player.pheight/2)};
     //check if enemy points inside player
     for(int i =0; i<ePoints.length; i++)
     {

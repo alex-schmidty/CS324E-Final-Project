@@ -60,7 +60,7 @@ public class Player {
       PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
       bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
       type = 3;
-      shootSound.play(); 
+      //shootSound.play(); 
     }
     
     this.sprite.pos.set(pos.x, pos.y);

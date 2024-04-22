@@ -1,6 +1,6 @@
-import processing.sound.*;
-SoundFile shootSound;
-SoundFile zombieSound; 
+//import processing.sound.*;
+//SoundFile shootSound;
+//SoundFile zombieSound; 
 
 // Game States
 public enum State
@@ -26,8 +26,8 @@ void setup() {
   player = new Player();
   timer = new Timer(1);
   gsm = new GameStateManager();
-  shootSound = new SoundFile(this, "./shootSound.mp3");
-  zombieSound = new SoundFile(this, "./zombieSound.mp3"); 
+  //shootSound = new SoundFile(this, "./shootSound.mp3");
+  //zombieSound = new SoundFile(this, "./zombieSound.mp3"); 
   
 }
 
