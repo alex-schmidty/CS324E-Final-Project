@@ -91,48 +91,32 @@ public class Enemy
 }
 
 void createEnemies(int num){
-  //ArrayList<Float> xpos = new ArrayList<Float>();
-  //xpos.add(0.0);
-  //float middle = width/2;
-  //xpos.add(middle);
-  //float end = width;
-  //xpos.add(end);
-  //ArrayList<Float> ypos = new ArrayList<Float>();
-  //ypos.add(0.0);
-  //float middley = width/2;
-  //ypos.add(middley);
-  //float endy = width;
-  //ypos.add(endy);
-  
-  //for(int i=0; i<num; i++)
-  //{
-  //  int randomxpos = int(random(3));
-  //  int randomypos = int(random(3));
-  //  Enemy e= new Enemy(xpos.get(randomxpos), ypos.get(randomypos), ceil(random(2)));
-  //  e.vel = new PVector(0,random(.8,2.3));
-  //  enemies.add(e);
-  //}
+
   for(int i=0; i<num; i++)
   {
-    float x = random(-100, width+100);
+    float x = 0;
     float y = 0;
-    if( x<= 0 || x>=width)
+    int side = ceil(random(4));
+    int PADDING = 200;
+    switch(side)
     {
-      y = random(-100, height+100);
+      case 1: // top
+         x = random(-PADDING, width+PADDING);
+         y = random(-PADDING,0); 
+      break;
+      case 2: // bottom
+         x = random(-PADDING, width+PADDING);
+         y = random(height,height+PADDING);
+      break;
+      case 3: // left
+         x = random(-PADDING, 0);
+         y = random(-PADDING, height+PADDING);
+      break;
+      case 4: // right
+         x = random(width, width+PADDING);
+         y = random(-PADDING, height+PADDING);
+      break;
     }
-    else
-    {
-      if((int)random(2) == 1)
-      {
-        y = random(-100,0); 
-      }
-      else
-      {
-        y = random(height,height+100);
-      }
-      
-    }
-    
     enemies.add(new Enemy(x,y, ceil(random(2))));
   }
 }

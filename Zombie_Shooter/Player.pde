@@ -21,7 +21,7 @@ public class Player {
   {
     pos = new PVector( width/2, height-90);
     numUpdates = 0;
-    gunTimer = new Timer(400);
+    gunTimer = new Timer(300);
     gunTimer.startTimer();
     this.sprite = new Sprite("PlayerIdle", pos, 200, 1.3);
   }
