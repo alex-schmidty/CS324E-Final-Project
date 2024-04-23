@@ -1,6 +1,6 @@
 class Anim extends Sprite{
-  Anim(String frameLoader, PVector pos, int animSpeed, float size){
-    super(frameLoader, pos, animSpeed, size);
+  Anim(String frameLoader, String loc,  PVector pos, int animSpeed, float size){
+    super(frameLoader, loc, pos, animSpeed, size);
   }
   
   void update(){

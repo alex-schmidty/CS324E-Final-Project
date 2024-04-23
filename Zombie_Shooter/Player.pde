@@ -23,7 +23,7 @@ public class Player {
     numUpdates = 0;
     gunTimer = new Timer(300);
     gunTimer.startTimer();
-    this.sprite = new Sprite("PlayerIdle", pos, 200, 1.3);
+    this.sprite = new Sprite("PlayerIdle", "data", pos, 200, 1.3);
   }
   public void reset()
   {
@@ -35,7 +35,7 @@ public class Player {
     gunTimer.startTimer();
     //playerType(1);
     this.sprite.shouldRemove = true;
-    this.sprite = new Sprite("PlayerIdle", pos, 100, 1.3);
+    this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
   }
   public void update()
   {

@@ -7,16 +7,17 @@ class Sprite{
   int numImages, currentImage;
   //ArrayList<PImage> images;
   String spriteName;
+  String loc;
   Timer timer;
   float size;
   boolean shouldRemove, isFacingLeft;
   PVector shift, pos;
 
-  Sprite(String frameLoader, PVector pos, int animSpeed, float size){
+  Sprite(String frameLoader, String loc, PVector pos, int animSpeed, float size){
     allSprites.add(this);
     this.spriteName = frameLoader;
-    // this.images = new ArrayList<PImage>();
-    loadImages(frameLoader);
+    this.loc = loc;
+    loadImages(frameLoader, loc);
     //this.numImages = this.images.size();
     this.currentImage = 0;
     this.pos = pos;
@@ -27,7 +28,7 @@ class Sprite{
     this.isFacingLeft = false;
   }
   
-  void loadImages(String frameLoader)
+  void loadImages(String frameLoader, String loc)
   {
     ArrayList<PImage> images = new ArrayList<PImage>();
     String[] lines = loadStrings(frameLoader + ".txt");
@@ -36,7 +37,7 @@ class Sprite{
        for (int i = 0; i < lines.length; i++)
       {
         String line = lines[i];
-        images.add(loadImage(line + ".png"));
+        images.add(loadImage(loc+"\\"+line + ".png"));
         imgDict.put(frameLoader, images);
       }
     }

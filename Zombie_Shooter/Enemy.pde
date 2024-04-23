@@ -27,7 +27,7 @@ public class Enemy
     {
       player.isDead = true;
       player.sprite.shouldRemove = true;
-      new Anim("Explosion", player.pos.copy(), 100, .6);
+      new Anim("Explosion", "data",player.pos.copy(), 100, .6);
     }
     if(!isDead)
     {
@@ -44,7 +44,7 @@ public class Enemy
         killcount +=1;
         b.shouldRemove = true;
         this.sprite.shouldRemove = true;
-        new Anim("Zombie1_Dead", this.pos.copy(), 100, .3);
+        new Anim("Zombie1\\Zombie1_Dead", "Zombie1", this.pos.copy(), 100, .3);
         hitBullet =true;
         break;
       }
@@ -55,10 +55,10 @@ public class Enemy
   
   private void enemyType(int type){
     if(type == 1){
-      this.sprite = new Sprite("Zombie1Walk", this.pos, 100, .3);
+      this.sprite = new Sprite("Zombie1\\Zombie1Walk", "Zombie1", this.pos, 100, .3);
       speed = 2;
     } else if(type == 2){
-      this.sprite = new Sprite("Zombie1", this.pos, 100, .3);
+      this.sprite = new Sprite("Zombie1\\Zombie1", "Zombie1", this.pos, 100, .3);
       speed = 4;
     }
   }
