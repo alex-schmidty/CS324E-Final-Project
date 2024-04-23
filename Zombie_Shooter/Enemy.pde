@@ -50,7 +50,7 @@ public class Enemy
             new Anim("Zombie1\\Zombie1_Dead", "Zombie1", this.pos.copy(), 100, .3);
           else if(type ==2)
             new Anim("Zombie2\\Zombie2_Dead", "Zombie2", this.pos.copy(), 100, .3);
-           else if(type ==2)
+           else if(type ==3)
             new Anim("Zombie3\\Zombie3_Dead", "Zombie3", this.pos.copy(), 100, .3);
           hitBullet =true;
           break;
