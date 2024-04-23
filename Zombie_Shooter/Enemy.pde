@@ -9,9 +9,11 @@ public class Enemy
   public boolean hitPlayer = false;
   public boolean isDead = false;
   public Sprite sprite;
+  public int type;
   public Enemy(float x, float y, int type)
   {
     this.pos = new PVector(x,y);
+    this.type = type;
     enemyType(type);
     this.vel = new PVector(1,0);
   }
@@ -35,31 +37,53 @@ public class Enemy
       if(pos.x< 50 || pos.x >width - 50){
         vel.x *=-1;
     }
-    for(Bullet b: bullets)
-    {
-      if(b.pos.x<=pos.x+ewidth/2 && b.pos.x>= pos.x-ewidth/2
-        && b.pos.y<=pos.y+eheight/2 && b.pos.y>= pos.y-eheight/2 )
+      for(Bullet b: bullets)
       {
-        zombieSound.play();
-        killcount +=1;
-        b.shouldRemove = true;
-        this.sprite.shouldRemove = true;
-        new Anim("Zombie1\\Zombie1_Dead", "Zombie1", this.pos.copy(), 100, .3);
-        hitBullet =true;
-        break;
-      }
+        if(b.pos.x<=pos.x+ewidth/2 && b.pos.x>= pos.x-ewidth/2
+          && b.pos.y<=pos.y+eheight/2 && b.pos.y>= pos.y-eheight/2 )
+        {
+          zombieSound.play();
+          killcount +=1;
+          b.shouldRemove = true;
+          this.sprite.shouldRemove = true;
+          if(type ==1)
+            new Anim("Zombie1\\Zombie1_Dead", "Zombie1", this.pos.copy(), 100, .3);
+          else if(type ==2)
+            new Anim("Zombie2\\Zombie2_Dead", "Zombie2", this.pos.copy(), 100, .3);
+          hitBullet =true;
+          break;
+        }
       }
     }
     
   }
   
-  private void enemyType(int type){
-    if(type == 1){
-      this.sprite = new Sprite("Zombie1\\Zombie1Walk", "Zombie1", this.pos, 100, .3);
-      speed = 2;
+  private void enemyType(int type)
+  {  
+    if(type == 1)
+    {
+      if(random(2)>1)
+      {
+        this.sprite = new Sprite("Zombie1\\Zombie1Walk", "Zombie1", this.pos, 100, .3);
+        speed = 2;
+      }
+      else
+      {
+        this.sprite = new Sprite("Zombie1\\Zombie1", "Zombie1", this.pos, 100, .3);
+        speed = 4;
+      }
+      
     } else if(type == 2){
-      this.sprite = new Sprite("Zombie1\\Zombie1", "Zombie1", this.pos, 100, .3);
-      speed = 4;
+      if(random(2)>1)
+      {
+        this.sprite = new Sprite("Zombie2\\Zombie2Walk", "Zombie2", this.pos, 100, .3);
+        speed = 2;
+      }
+      else
+      {
+        this.sprite = new Sprite("Zombie2\\Zombie2Run", "Zombie2", this.pos, 100, .3);
+        speed = 4;
+      }
     }
   }
   
