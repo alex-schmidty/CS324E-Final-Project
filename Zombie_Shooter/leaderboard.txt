@@ -5,6 +5,7 @@ Player26,38
 Player16,37
 Player18,36
 Player17,28
+Player29,21
 Player19,15
 Player24,15
 Player22,14
@@ -27,4 +28,4 @@ Player9,0
 Player10,0
 Player11,0
 Player23,0
-Player29,21
+Player30,76

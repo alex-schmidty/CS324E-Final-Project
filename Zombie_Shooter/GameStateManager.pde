@@ -15,7 +15,7 @@ public class GameStateManager
   }
   public void displayGame()
   {
-    background(5);
+    image(bb,0,0);
     //display everything
     for (Bullet bullet : bullets)
     {

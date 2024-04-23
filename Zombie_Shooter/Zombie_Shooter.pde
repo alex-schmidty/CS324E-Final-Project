@@ -29,6 +29,8 @@ GameStateManager gsm;
 boolean paused = false;
 Leaderboard leaderboard;
 String playerName;
+PGraphics bb; // background buffer
+
 
 void setup() {
   fullScreen();
@@ -43,6 +45,7 @@ void setup() {
   leaderboard = new Leaderboard();
   leaderboard.loadFromFile("leaderboard.txt");
   playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name  
+  createBackground();
 }
 
 void draw()
@@ -105,4 +108,23 @@ void drawEdge(){
   strokeWeight(1);
   stroke(0);
   fill(0);
+}
+void createBackground()
+{
+  PImage grass = loadImage("grass_tile.png");
+  bb = createGraphics(width, height);
+  bb.beginDraw();
+  bb.pushMatrix();
+  bb.scale(.2);
+  for(int i = 0; i<9; i++)
+  {
+    for(int j = 0; j<5; j++)
+    {
+      bb.image(grass, i*grass.width, j*grass.height);
+    }
+  }
+  bb.popMatrix();
+  bb.endDraw();
+  
+  
 }
