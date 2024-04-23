@@ -44,7 +44,7 @@ public class Enemy
         killcount +=1;
         b.shouldRemove = true;
         this.sprite.shouldRemove = true;
-        new Anim("Explosion", this.pos.copy(), 100, .6);
+        new Anim("Zombie1_Dead", this.pos.copy(), 100, .3);
         hitBullet =true;
         break;
       }

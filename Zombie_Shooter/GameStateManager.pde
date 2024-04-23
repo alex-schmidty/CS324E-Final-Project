@@ -16,6 +16,12 @@ public class GameStateManager
   public void displayGame()
   {
     background(5);
+    //display everything
+    for (Bullet bullet : bullets)
+    {
+      bullet.display();
+    }
+    displaySprites();
     switch(state)
     {
     case START:
@@ -122,12 +128,7 @@ public class GameStateManager
       }
       break;
     }
-    //display everything
-    for (Bullet bullet : bullets)
-    {
-      bullet.display();
-    }
-    displaySprites();
+    
   }
   public void updateGame()
   {
