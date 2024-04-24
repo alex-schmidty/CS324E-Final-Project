@@ -7,6 +7,7 @@ PFont gameFont;
 // adding sound 
 SoundFile shootSound;
 SoundFile zombieSound; 
+SoundFile playerDeath;
 
 // gui buttons 
 GTextField nameInput;
@@ -46,6 +47,7 @@ void setup() {
   reticle = new Reticle(player);
   timer = new Timer(1);
   gsm = new GameStateManager();
+  playerDeath = new SoundFile(this, "./playerDeath.mp3");
   shootSound = new SoundFile(this, "./shootSound.mp3");
   zombieSound = new SoundFile(this, "./zombieSound.mp3");
   leaderboard = new Leaderboard();

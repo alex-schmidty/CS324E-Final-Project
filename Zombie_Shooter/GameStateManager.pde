@@ -30,7 +30,7 @@ public class GameStateManager
       fill(255);
       image(logo, width/2 - logo.width/2, 15);
       textAlign(CENTER, CENTER);
-      textSize(24);
+      textSize(30);
       fill(255, 0, 0);
       text("Quit", 40, 30);
       if (mouseX > 15 && mouseY > 15 && mouseX < 65 && mouseY < 45) {
@@ -71,23 +71,23 @@ public class GameStateManager
       if (killcntmax != 0)
       {
         fill(255, 0, 0);
-        textSize(20);
+        textSize(30);
         text("Kill Count High Score: " + killcntmax, width/2, height/2 + 150);
       }
       fill(70, 70, 175);
-      text("Hold 'C' to see controls", width/2, height-205);
+      text("Hold 'C' to see controls", width/2, height/2 +200);
       if (keyPressed && key == 'c' || key =='C' )
       {
         rectMode(CENTER);
-        rect(width/2, height-205, 300, 175);
+        rect(width/2, height/2+250, 300, 175);
         fill(0);
-        textAlign(RIGHT);
-        textSize(20);
-        text("Move Up: 'W' or left arrow key", width/2+130, height-270);
-        text("Move Left: 'A' or left arrow key", width/2+130, height-250);
-        text("Move Down: 'S' or right arrow key", width/2+130, height-230);
-        text("Move Right: 'D' or right arrow key", width/2+130, height-210);
-        text("Shoot: Point and click mouse", width/2+130, height-130);
+        textAlign(CENTER);
+        textSize(25);
+        text("Move Up: 'W' or UP arrow key", width/2, height/2+200);
+        text("Move Left: 'A' or LEFT arrow key", width/2, height/2+230);
+        text("Move Down: 'S' or DOWN arrow key", width/2, height/2+260);
+        text("Move Right: 'D' or RIGHT arrow key", width/2, height/2+290);
+        text("Shoot: Point and click mouse", width/2, height/2+320);
         fill(255);
       }
       

@@ -30,7 +30,8 @@ public class Enemy
       if (player.lives == 0){
         player.isDead = true;
         player.sprite.shouldRemove = true;
-        new Anim("Explosion", "data",player.pos.copy(), 100, .6);
+        playerDeath.play();
+        new Anim("PlayerDie", "data",player.pos.copy(), 150, 1.2);
       }
     }
     if(!isDead)
