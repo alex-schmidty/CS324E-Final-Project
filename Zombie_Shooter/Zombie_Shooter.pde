@@ -1,6 +1,9 @@
 import processing.sound.*;
 import g4p_controls.*;
 
+// add font
+PFont gameFont; 
+
 // adding sound 
 SoundFile shootSound;
 SoundFile zombieSound; 
@@ -35,6 +38,8 @@ String separator = System.getProperty("file.separator");
 
 void setup() {
   fullScreen();
+  gameFont = createFont("gamefont.otf", 32);
+  textFont(gameFont);
   enemies = new ArrayList<Enemy>();
   bullets = new ArrayList<Bullet>();
   player = new Player();
