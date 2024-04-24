@@ -30,6 +30,7 @@ boolean paused = false;
 Leaderboard leaderboard;
 String playerName;
 PGraphics bb; // background buffer
+String separator = System.getProperty("file.separator");
 
 
 void setup() {

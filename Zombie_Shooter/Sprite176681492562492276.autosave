@@ -37,7 +37,7 @@ class Sprite{
        for (int i = 0; i < lines.length; i++)
       {
         String line = lines[i];
-        images.add(loadImage(loc + separator +line + ".png"));
+        images.add(loadImage(loc+"//"+line + ".png"));
         imgDict.put(frameLoader, images);
       }
     }
