@@ -256,7 +256,7 @@ public class GameStateManager
 
   public void resetGame()
   {
-    leaderboard.addEntry(playerName, killcount);
+    leaderboard.addEntry(playerName, killcount, difficulty);
     leaderboard.saveToFile("leaderboard.txt");
     
     player.reset();

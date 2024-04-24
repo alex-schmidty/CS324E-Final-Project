@@ -1,5 +1,4 @@
 import processing.sound.*;
-import g4p_controls.*;
 
 // add font
 PFont gameFont; 
@@ -7,12 +6,6 @@ PFont gameFont;
 // adding sound 
 SoundFile shootSound;
 SoundFile zombieSound; 
-SoundFile playerDeath;
-
-// gui buttons 
-GTextField nameInput;
-GButton saveButton;
-GButton skipButton;
 
 // Game States
 public enum State
@@ -47,7 +40,6 @@ void setup() {
   reticle = new Reticle(player);
   timer = new Timer(1);
   gsm = new GameStateManager();
-  playerDeath = new SoundFile(this, "./playerDeath.mp3");
   shootSound = new SoundFile(this, "./shootSound.mp3");
   zombieSound = new SoundFile(this, "./zombieSound.mp3");
   leaderboard = new Leaderboard();
@@ -67,16 +59,8 @@ void draw()
       textSize(50);
       text("Paused", width/2, height/2);
       fill(255);
-      textSize(30);
-      text("Press P to resume", width/2, height/15 + 30);
-      text("Your score: " + killcount, width/2, height/2+100);
       textSize(25);
-      fill(200);
-      text("Press Q to quit", width/2, height/15+80);
-      if (keyPressed && key == 'q' || key == 'Q'){
-        exit();
-      }
-      fill(255);
+      text("Press P to resume", width/2, height/15 + 30);
     }
     playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
 }
@@ -84,20 +68,27 @@ void draw()
 void keyPressed() 
 {
    // player controls
-  if (key == 'a' || key == 'A' || keyCode == LEFT) {player.isMoving = true; player.isMovingLeft = true; 
-          player.sprite.isFacingLeft = true;}
-  else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMoving = true; player.isMovingRight = true;
-          player.sprite.isFacingLeft = false;}
-  else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMoving = true; player.isMovingUp = true; }
-  else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMoving = true; player.isMovingDown = true;}
+  if (key == 'a' || key == 'A' || keyCode == LEFT) {player.isMovingLeft = true; player.sprite.isFacingLeft = true;}
+  else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMovingRight = true;  player.sprite.isFacingLeft = false;}
+  else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = true; }
+  else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = true;}
+  
+  // Simulate adding a player to the leaderboard when a key is pressed (for testing purposes)
+  if (key == 'l') {
+    String playerName = "Player " + leaderboard.getLeaderboardSize(); // Generate a default name
+    int playerScore = (int) random(100); // Generate a random score
+    leaderboard.addEntry(playerName, playerScore);
+    leaderboard.saveToFile("leaderboard.txt");
+  }
+  
   
 }
 void keyReleased() {
-  if (key == 'a' || key == 'A' || keyCode == LEFT){ player.isMovingLeft = false;}
+  if (key == 'a' || key == 'A' || keyCode == LEFT){player.isMovingLeft = false;}
   else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMovingRight = false;}
   else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = false; }
   else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = false;}
-  
+  else if (key == ' ' ) {player.isShooting = false;}
 }
 void mousePressed()
 {

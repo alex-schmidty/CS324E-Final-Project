@@ -1,19 +1,25 @@
 class Leaderboard {
 
   private ArrayList<LeaderboardEntry> entries;
+  public PImage leaderboardImg; 
 
   Leaderboard() {
     entries = new ArrayList<LeaderboardEntry>();
+    leaderboardImg = loadImage("leaderboard.png"); 
   }
 
   void loadFromFile(String filename) {
     String[] lines = loadStrings(filename);
     if (lines != null) {
       for (String line : lines) {
+        
         String[] parts = line.split(",");
+        println(parts); 
         String name = parts[0].trim();
         int score = Integer.parseInt(parts[1].trim());
-        entries.add(new LeaderboardEntry(name, score));
+        
+        int difficulty = Integer.parseInt(parts[2].trim());
+        entries.add(new LeaderboardEntry(name, score, difficulty));
       }
     }
   }
@@ -22,35 +28,51 @@ class Leaderboard {
     String[] lines = new String[entries.size()];
     for (int i = 0; i < entries.size(); i++) {
       LeaderboardEntry entry = entries.get(i);
-      lines[i] = entry.getName() + "," + entry.getScore();
+      lines[i] = entry.getName() + "," + entry.getScore() + "," + entry.getDifficulty();
     }
     saveStrings(filename, lines);
   }
 
-  void addEntry(String name, int score) {
-    entries.add(new LeaderboardEntry(name, score));
+  void addEntry(String name, int score, int difficulty) {
+    entries.add(new LeaderboardEntry(name, score, difficulty));
   }
 
   void display() {
     // Sort the entries by score in descending order
     entries.sort((a, b) -> Integer.compare(b.getScore(), a.getScore()));
 
-    rectMode(CENTER);
-    fill(5);
-    stroke(0, 255, 0);
-    rect(width/2, height/2, width/1.5, height/1.5);
+    //rectMode(CENTER);
+    //fill(5);
+    //stroke(0, 255, 0);
+    //rect(width/2, height/2, width/1.5, height/1.5);
+    leaderboardImg.resize(1200, 0); 
+
+    int imgX = width/2 - leaderboardImg.width / 2;
+    int imgY = height/2 - leaderboardImg.height / 2;
+    
+    image(leaderboardImg,imgX, imgY); 
 
     textSize(60);
     fill(255);
-    text("Leaderboard", width/2, height/2 - height/4);
+    text("Leaderboard", width/2, height/2 - height/4 - 10);
 
     textSize(30);
     int numEntries = min(entries.size(), 10);
-
+    
+     // Display header for the leaderboard
+    text("Rank", width/2 - 200, height/2 - 180); // Moved up by 100 pixels
+    text("Name", width/2 - 50, height/2 - 180);  // Moved up by 100 pixels
+    text("Score", width/2 + 150, height/2 - 180); // Moved up by 100 pixels
+    text("Difficulty", width/2 + 250, height/2 - 180); // Moved up by 100 pixels
+  
     for (int i = 0; i < numEntries; i++) {
       LeaderboardEntry entry = entries.get(i);
-      text((i + 1) + ". " + entry.getName() + ": " + entry.getScore(), width/2, (height/2 - 150) + i * 40);
-      if (entry.getName() == playerName) {
+      // Display rank, name, and score for each entry
+      text((i + 1) + ".", width/2 - 200, (height/2 - 150) + i * 40); // Moved up by 100 pixels
+      text(entry.getName(), width/2 - 50, (height/2 - 150) + i * 40); // Moved up by 100 pixels
+      text(entry.getScore(), width/2 + 150, (height/2 - 150) + i * 40); // Moved up by 100 pixels
+      text(entry.getDifficulty(), width/2 + 250, (height/2 - 150) + i * 40); // Moved up by 100 pixels
+      if (entry.getName().equals(playerName)) {
         gsm.top10 = true;
         print(true);
       }
