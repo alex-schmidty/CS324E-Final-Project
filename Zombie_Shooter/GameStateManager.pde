@@ -54,9 +54,10 @@ public class GameStateManager
           mouseY < height/2 + padding/2) {
           fill(0, 255, 0); //highlight
         } else {
-          fill(255);
+          fill(170, 255, 255);;
         }
         text(i, x, height/2); //display number
+        fill(255);
       }
       
       // display leaderboard 
@@ -72,7 +73,7 @@ public class GameStateManager
       {
         fill(255, 0, 0);
         textSize(30);
-        text("Kill Count High Score: " + killcntmax, width/2, height/2 + 150);
+        text("Kill Count High Score: " + killcntmax, width/2, height/2 + 375);
       }
       fill(70, 70, 175);
       text("Hold 'C' to see controls", width/2, height/2 +200);
