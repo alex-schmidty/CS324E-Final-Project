@@ -2,7 +2,7 @@ public class GameStateManager
 {
   public State state;
   public PImage logo;
-  public int round = 0;
+  public int round = 1;
   public int difficulty;
   public boolean pKeyPressed = false; // add a flag to check if p has already been pressed in the current frame
   private boolean displayLeaderboard = false;
@@ -120,7 +120,7 @@ public class GameStateManager
       fill(255);
       textSize(50);
       textAlign(CENTER, CENTER);
-      text("YOU LOSE!", width/2, height/2- 50);
+      text("GAME OVER!", width/2, height/2- 50);
       textSize(20);
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
       if (leaderboard.top10()) {
@@ -192,6 +192,7 @@ public class GameStateManager
         if (timer.activated())
         {
           // update player
+          player.switchSprite();
           player.update();
           reticle.createRet();
           // update bullets

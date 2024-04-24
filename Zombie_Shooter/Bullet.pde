@@ -1,7 +1,7 @@
 public class Bullet
 {
   public static final float SPEED = 40;
-  public static final float _RADIUS = 2;
+  public static final float _RADIUS = 4;
   public PVector pos;
   public PVector vel;
   public boolean shouldRemove = false;

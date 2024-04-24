@@ -26,10 +26,12 @@ public class Enemy
     if(player.pos.x< pos.x) {sprite.isFacingLeft = true; }
     else {sprite.isFacingLeft = false;}
     if(collidingWithPlayer())
-    {
-      player.isDead = true;
-      player.sprite.shouldRemove = true;
-      new Anim("Explosion", "data",player.pos.copy(), 100, .6);
+    { player.lives -= 1;
+      if (player.lives == 0){
+        player.isDead = true;
+        player.sprite.shouldRemove = true;
+        new Anim("Explosion", "data",player.pos.copy(), 100, .6);
+      }
     }
     if(!isDead)
     {
