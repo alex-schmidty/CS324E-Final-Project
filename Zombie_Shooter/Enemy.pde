@@ -27,7 +27,7 @@ public class Enemy
     else {sprite.isFacingLeft = false;}
     if(collidingWithPlayer())
     { player.lives -= 1;
-      if (player.lives == 0){
+      if (player.lives <= 0){
         player.isDead = true;
         player.sprite.shouldRemove = true;
         playerDeath.play();

@@ -108,10 +108,10 @@ public class GameStateManager
       break;
     case WON:
       fill(255);
-      textSize(50);
+      textSize(75);
       textAlign(CENTER, CENTER);
       text("YOU WIN!", width/2, height/2- 50);
-      textSize(20);
+      textSize(30);
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
       if (leaderboard.top10()) {
         text("Congratulations! You made it to the leaderboard " + playerName, width/2, height/2 + 100);
@@ -119,10 +119,10 @@ public class GameStateManager
       break;
     case LOST:
       fill(255);
-      textSize(50);
+      textSize(75);
       textAlign(CENTER, CENTER);
       text("GAME OVER!", width/2, height/2- 50);
-      textSize(20);
+      textSize(30);
       text("Press R to reset or Q to quit", width/2, height/2 + 50);
       if (leaderboard.top10()) {
         text("Congratulations! You made it to the leaderboard " + playerName, width/2, height/2 + 100);

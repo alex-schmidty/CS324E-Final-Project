@@ -67,8 +67,16 @@ void draw()
       textSize(50);
       text("Paused", width/2, height/2);
       fill(255);
-      textSize(25);
+      textSize(30);
       text("Press P to resume", width/2, height/15 + 30);
+      text("Your score: " + killcount, width/2, height/2+100);
+      textSize(25);
+      fill(200);
+      text("Press Q to quit", width/2, height/15+80);
+      if (keyPressed && key == 'q' || key == 'Q'){
+        exit();
+      }
+      fill(255);
     }
     playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
 }
