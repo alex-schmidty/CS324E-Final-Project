@@ -109,6 +109,7 @@ public class Player {
     {
       invincibleTimer.startTimer();
       lives-=1;
+      chompSound.play();
     }
     if(lives<=0)
     {

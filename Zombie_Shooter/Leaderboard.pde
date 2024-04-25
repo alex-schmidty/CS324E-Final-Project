@@ -52,7 +52,7 @@ class Leaderboard {
 
     textSize(60);
     fill(255);
-    text("Leaderboard", width/2, height/2 - height/4 +10);
+    text("Leaderboard", width/2, height/2 - height/4 - 15);
 
     textSize(30);
     int numEntries = min(entries.size(), 10);

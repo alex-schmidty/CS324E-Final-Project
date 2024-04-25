@@ -27,8 +27,8 @@ public class GameStateManager
     switch(state)
     {
     case START:
-      
-      
+        displayStart(); 
+
        if (displayLeaderboard) {
         leaderboard.display();
       }
