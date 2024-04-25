@@ -2,6 +2,7 @@ public class GameStateManager
 {
   public State state;
   public PImage logo;
+  public PImage headstone; 
   public int round = 1;
   public int difficulty;
   public boolean pKeyPressed = false; // add a flag to check if p has already been pressed in the current frame
@@ -12,6 +13,7 @@ public class GameStateManager
   {
     this.state= State.START;
     logo = loadImage("./ZOMBIE-ATTACK.png");
+    headstone = loadImage("./headstoneMain.png"); 
   }
   public void displayGame()
   {
@@ -28,7 +30,7 @@ public class GameStateManager
       textAlign(CENTER, CENTER);
       textSize(50);
       fill(255);
-      image(logo, width/2 - logo.width/2, 15);
+     
       textAlign(CENTER, CENTER);
       textSize(30);
       fill(255, 0, 0);
@@ -38,6 +40,15 @@ public class GameStateManager
         fill(0);
         text("Quit", 40, 30);
       }
+      
+      headstone.resize(500, 0); 
+  
+      int imgX = width/2 - headstone.width / 2;
+      int imgY = height/2 - headstone.height / 2 - 15;
+      
+      image(headstone,imgX, imgY); 
+      image(logo, width/2 - logo.width/2, 15);
+      
       fill(170, 255, 255);
       text("Select difficulty:", width/2, height/2 - 100);
 
