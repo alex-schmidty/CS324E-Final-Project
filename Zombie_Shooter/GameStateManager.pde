@@ -49,11 +49,13 @@ public class GameStateManager
       image(headstone,imgX, imgY); 
       image(logo, width/2 - logo.width/2, 15);
       
+      textSize(38);
       fill(170, 255, 255);
-      text("Select difficulty:", width/2, height/2 - 100);
+      text("Select difficulty", width/2, height/2 - 100);
 
       int padding = 50; // Adjust padding as needed
-
+      textSize(30);
+      
       // Display difficulty options
       for (int i = 1; i <= 5; i++)
       {
@@ -151,8 +153,15 @@ public class GameStateManager
     switch(state)
     {
     case START:
+      if (!lobbySound.isPlaying()) {
+          lobbySound.loop();
+      }
+      
       if (mousePressed)
       {
+        if(!buttonClick.isPlaying()) {
+          buttonClick.play(); 
+        }
         if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > height/2 + 75 && mouseY < height/2 + 125) {
           displayLeaderboard = true; 
         }
@@ -185,6 +194,13 @@ public class GameStateManager
       break;
 
     case PLAYING:
+       if (lobbySound.isPlaying() && !paused) {
+          lobbySound.stop();
+        }
+       
+       if(!gameSound.isPlaying() && !paused) {
+         gameSound.jump(8); 
+       }
 
       // Check if the 'P' key is pressed and the pause toggle flag is false
       if (keyPressed && (key == 'p' || key == 'P') && !pKeyPressed) {
@@ -198,6 +214,11 @@ public class GameStateManager
         }
         // Update the flag to indicate that the key has been pressed in this frame
         pKeyPressed = true;
+       
+       if(gameSound.isPlaying()) {
+         gameSound.pause(); 
+         lobbySound.play(); 
+       }
       }
 
       // Reset the flag when the key is released
@@ -258,6 +279,7 @@ public class GameStateManager
       break;
     case WON: // treats WON and LOST the same
     case LOST:
+      gameSound.stop(); 
       if (keyPressed && key == 'r'|| key =='R') {
         resetGame();
       }

@@ -14,10 +14,8 @@ class Leaderboard {
       for (String line : lines) {
         
         String[] parts = line.split(",");
-        println(parts); 
         String name = parts[0].trim();
         int score = Integer.parseInt(parts[1].trim());
-        
         int difficulty = Integer.parseInt(parts[2].trim());
         entries.add(new LeaderboardEntry(name, score, difficulty));
       }

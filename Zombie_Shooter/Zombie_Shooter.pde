@@ -1,23 +1,21 @@
 import processing.sound.*;
-import g4p_controls.*;
 
 // add font
-PFont gameFont; 
+PFont gameFont;
 
-// adding sound 
+// adding sound
 SoundFile shootSound;
-SoundFile zombieSound; 
+SoundFile zombieSound;
 SoundFile playerDeath;
-
-// gui buttons 
-GTextField nameInput;
-GButton saveButton;
-GButton skipButton;
+SoundFile gameSound;
+SoundFile lobbySound;
+SoundFile buttonClick;
+SoundFile chompSound;
 
 // Game States
 public enum State
 {
-  START, PLAYING, WON, LOST;   
+  START, PLAYING, WON, LOST;
 }
 
 // variables that all classes need
@@ -47,71 +45,83 @@ void setup() {
   reticle = new Reticle(player);
   timer = new Timer(1);
   gsm = new GameStateManager();
+
+  // sound
   playerDeath = new SoundFile(this, "./playerDeath.mp3");
   shootSound = new SoundFile(this, "./shootSound.mp3");
   zombieSound = new SoundFile(this, "./zombieSound.mp3");
+
+  // PLACEHOLDER PLS RELACE WITH BETTER OPTIONS T-T
+  gameSound = new SoundFile(this, "./gameSound.mp3");
+  lobbySound = new SoundFile(this, "./lobbySound.mp3");
+  buttonClick = new SoundFile(this, "./buttonClick.mp3");
+  chompSound = new SoundFile(this, "./chomp.mp3");
+
   leaderboard = new Leaderboard();
   leaderboard.loadFromFile("leaderboard.txt");
-  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name  
+  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
   createBackground();
+  //gameSound.jump(8);
 }
 
 void draw()
 {
-  gsm.displayGame(); 
+  gsm.displayGame();
   gsm.updateGame();
   drawEdge();
   if (paused) {
-      rect(0, 0, width, height);
-      fill(255, 0, 0);
-      textSize(50);
-      text("Paused", width/2, height/2);
-      fill(255);
-      textSize(30);
-      text("Press P to resume", width/2, height/15 + 30);
-      text("Your score: " + killcount, width/2, height/2+100);
-      textSize(25);
-      fill(200);
-      text("Press Q to quit", width/2, height/15+80);
-      if (keyPressed && key == 'q' || key == 'Q'){
-        exit();
-      }
-      fill(255);
-    }
-    playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
+    displayPause(); 
+  }
+  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
 }
 
-void keyPressed() 
+void keyPressed()
 {
-   // player controls
-  if (key == 'a' || key == 'A' || keyCode == LEFT) {player.isMoving = true; player.isMovingLeft = true; 
-          player.sprite.isFacingLeft = true;}
-  else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMoving = true; player.isMovingRight = true;
-          player.sprite.isFacingLeft = false;}
-  else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMoving = true; player.isMovingUp = true; }
-  else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMoving = true; player.isMovingDown = true;}
-  
+  // player controls
+  if (key == 'a' || key == 'A' || keyCode == LEFT) {
+    player.isMoving = true;
+    player.isMovingLeft = true;
+    player.sprite.isFacingLeft = true;
+  } else if (key == 'd' || key == 'D' || keyCode == RIGHT) {
+    player.isMoving = true;
+    player.isMovingRight = true;
+    player.sprite.isFacingLeft = false;
+  } else if (key == 'w' || key == 'W' || keyCode == UP) {
+    player.isMoving = true;
+    player.isMovingUp = true;
+  } else if (key == 's' || key == 'S' || keyCode == DOWN) {
+    player.isMoving = true;
+    player.isMovingDown = true;
+  }
 }
 void keyReleased() {
-  if (key == 'a' || key == 'A' || keyCode == LEFT){ player.isMovingLeft = false;}
-  else if (key == 'd' || key == 'D' || keyCode == RIGHT) {player.isMovingRight = false;}
-  else if (key == 'w' || key == 'W' || keyCode == UP) {player.isMovingUp = false; }
-  else if (key == 's' || key == 'S' || keyCode == DOWN) {player.isMovingDown = false;}
-  
+  if (key == 'a' || key == 'A' || keyCode == LEFT) {
+    player.isMovingLeft = false;
+  } else if (key == 'd' || key == 'D' || keyCode == RIGHT) {
+    player.isMovingRight = false;
+  } else if (key == 'w' || key == 'W' || keyCode == UP) {
+    player.isMovingUp = false;
+  } else if (key == 's' || key == 'S' || keyCode == DOWN) {
+    player.isMovingDown = false;
+  }
 }
 void mousePressed()
 {
-    {player.isShooting = true;}
+  {
+    player.isShooting = true;
+  }
 }
 void mouseReleased()
 {
-    {player.isShooting = false;}
+  {
+    player.isShooting = false;
+  }
 }
 
-void drawEdge(){
+void drawEdge() {
   rectMode(CORNER);
-  stroke(255,155,72);
-  fill(0,0,0,0);
+  stroke(255, 155, 72);
+  fill(0, 0, 0, 0);
   strokeWeight(4);
   rect(2, 2, width - 4, height - 4);
   strokeWeight(1);
@@ -125,15 +135,32 @@ void createBackground()
   bb.beginDraw();
   bb.pushMatrix();
   bb.scale(.2);
-  for(int i = 0; i<9; i++)
+  for (int i = 0; i<9; i++)
   {
-    for(int j = 0; j<5; j++)
+    for (int j = 0; j<5; j++)
     {
       bb.image(grass, i*grass.width, j*grass.height);
     }
   }
   bb.popMatrix();
   bb.endDraw();
-  
-  
+}
+
+void displayPause() {
+  textAlign(CENTER, CENTER); 
+  rect(0, 0, width, height);
+  fill(255, 0, 0);
+  textSize(50);
+  text("Paused", width/2, height/2);
+  fill(255);
+  textSize(30);
+  text("Press P to resume", width/2, height/15 + 30);
+  text("Your score: " + killcount, width/2, height/2+100);
+  textSize(25);
+  fill(200);
+  text("Press Q to quit", width/2, height/15+80);
+  if (keyPressed && key == 'q' || key == 'Q') {
+    exit();
+  }
+  fill(255);
 }
