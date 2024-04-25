@@ -1,3 +1,8 @@
+enum PlayerAnimState
+{
+  IDLE, RUNNING, SHOOTING;
+}
+
 public class Player {
   public Timer gunTimer;
   public float speed  = 5;
@@ -15,6 +20,8 @@ public class Player {
   public int numUpdates = 0;
   public int prevState = 0; // 0 for idle, 1 for moving, 2 for moving +shooting
   Sprite sprite;
+  public PlayerAnimState animState;
+  
   public Player()
   {
     pos = new PVector( width/2, height-90);
@@ -22,6 +29,7 @@ public class Player {
     gunTimer = new Timer(300);
     gunTimer.startTimer();
     this.sprite = new Sprite("PlayerIdle", "data", pos, 200, 1.3);
+    animState = PlayerAnimState.IDLE;
   }
   public void reset()
   {
@@ -35,24 +43,40 @@ public class Player {
     this.sprite.shouldRemove = true;
     this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
   }
-  public void switchSprite(){
-    if (!this.isMovingLeft && !this.isMovingRight && !this.isMovingUp && !this.isMovingDown){
-      this.isMoving = false;
-    }
-    if (prevState != 1 && this.isMoving){ this.sprite.shouldRemove = true; 
-        this.sprite = new Sprite("PlayerRun", "data", this.pos, 100, 1.3);
-        prevState = 1;}
-      if (this.isShooting){this.sprite.shouldRemove = true; 
-        this.sprite = new Sprite("PlayerShoot", "data", this.pos, 100, 1.3);
-        prevState = 2;
-      }
-    
-      else if(prevState != 0 && !this.isMoving) { 
-         this.sprite.shouldRemove = true; 
-         this.sprite = new Sprite("PlayerIdle", "data", this.pos, 100, 1.3);
-         prevState = 0;
+  public void switchSprite()
+  {
+    if ((this.isMovingLeft || this.isMovingRight || this.isMovingUp || this.isMovingDown) && !isShooting)
+    {
+      if(animState != PlayerAnimState.RUNNING)
+      {
+        animState = PlayerAnimState.RUNNING;
+        this.sprite.shouldRemove = true;
+        this.sprite = new Sprite("PlayerRun", "data", pos, 100, 1.3);
       }
     }
+    else if(isShooting)
+    {
+      if(animState != PlayerAnimState.SHOOTING)
+      {
+        animState = PlayerAnimState.SHOOTING;
+        this.sprite.shouldRemove = true;
+        this.sprite = new Sprite("PlayerShoot", "data", pos, 100, 1.3);
+      }
+    }
+    else
+    {
+       if(animState != PlayerAnimState.IDLE)
+      {
+        animState = PlayerAnimState.IDLE;
+        this.sprite.shouldRemove = true;
+        this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
+      }
+    }
+    if(isMovingLeft)
+    {
+      sprite.isFacingLeft = true;
+    }
+  }
   
   public void update()
   {
@@ -72,7 +96,7 @@ public class Player {
       
     }
     
-    this.sprite.pos.set(pos.x, pos.y);
+    //this.sprite.pos.set(pos.x, pos.y);
     
   }
 }
