@@ -16,9 +16,9 @@ public class Player {
                  isMovingDown = false,
                  isShooting = false,
                  isDead = false;
+  public Timer invincibleTimer;// startTimer when invincible pause when vincible
   public int lives = 3;                 
   public int numUpdates = 0;
-  public int prevState = 0; // 0 for idle, 1 for moving, 2 for moving +shooting
   Sprite sprite;
   public PlayerAnimState animState;
   
@@ -30,11 +30,13 @@ public class Player {
     gunTimer.startTimer();
     this.sprite = new Sprite("PlayerIdle", "data", pos, 200, 1.3);
     animState = PlayerAnimState.IDLE;
+    invincibleTimer = new Timer(1000);
   }
   public void reset()
   {
     isDead = false;
     this.lives = 3;
+    invincibleTimer.pauseTimer();
     pos = new PVector( width/2, height-90);
     pwidth = 50;
     numUpdates = 0;
@@ -42,6 +44,7 @@ public class Player {
     gunTimer.startTimer();
     this.sprite.shouldRemove = true;
     this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
+    
   }
   public void switchSprite()
   {
@@ -93,10 +96,26 @@ public class Player {
       bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
 
       shootSound.play(); 
-      
     }
     
-    //this.sprite.pos.set(pos.x, pos.y);
-    
+    if(invincibleTimer.activated())
+    {
+      invincibleTimer.pauseTimer();
+    }
+  }
+  public void takeDamage()
+  {
+    if(!invincibleTimer.running)
+    {
+      invincibleTimer.startTimer();
+      lives-=1;
+    }
+    if(lives<=0)
+    {
+      isDead = true;
+      sprite.shouldRemove = true;
+      playerDeath.play();
+      new Anim("PlayerDie", "data",player.pos.copy(), 150, 1.2);
+    }
   }
 }

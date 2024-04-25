@@ -3,7 +3,7 @@ public class Timer
   boolean running;
   float lastCheck;
   float activationTime;
-
+  
   public Timer(float activationTime)
   {
     this.activationTime = activationTime;

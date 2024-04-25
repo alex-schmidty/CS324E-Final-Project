@@ -99,13 +99,16 @@ public class GameStateManager
     case PLAYING:
       fill(255);
       textSize(25);
+      
+      textAlign(CENTER, BOTTOM);
       text("Round " +round, width/2, height-15);
-      if (killcount != 0)
-      {
-        textSize(17);
-        text("Kill Count:  " + killcount, width-100, height -15);
-      }
+      textAlign(RIGHT, BOTTOM);
+      text("Kill Count:  " + killcount, width-100, height -15);
+      textAlign(LEFT, BOTTOM);
+      fill(230,40,40);
+      text("Lives " + player.lives, 100, height-15);
       break;
+      
     case WON:
       fill(255);
       textSize(75);
@@ -159,7 +162,8 @@ public class GameStateManager
           {
             state = State.PLAYING;
             difficulty = i;
-            player.pos = new PVector(width/2, height/2);
+            player.pos.x = width/2;
+            player.pos.y = height/2;
             timer.startTimer();
             createEnemies(difficulty*3);
             break;
