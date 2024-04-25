@@ -1,11 +1,8 @@
 Player15,212,1
 Player23,204,1
-Player45,201,1
 Player7,175,5
 Player21,172,5
-Player46,118,1
 Player20,111,5
-Player44,109,5
 Player27,99,4
 Player19,92,5
 Player9,84,1
@@ -45,4 +42,6 @@ Player36,0,3
 Player39,0,3
 Player41,0,3
 Player42,0,3
-Player47,167,1
+Player44,0,3
+Player45,0,3
+Player46,1,2

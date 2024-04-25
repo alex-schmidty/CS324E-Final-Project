@@ -3,6 +3,7 @@ public class GameStateManager
   public State state;
   public PImage logo;
   public PImage headstone; 
+  public PImage heart; 
   public int round = 1;
   public int difficulty;
   public boolean pKeyPressed = false; // add a flag to check if p has already been pressed in the current frame
@@ -14,6 +15,7 @@ public class GameStateManager
     this.state= State.START;
     logo = loadImage("./ZOMBIE-ATTACK.png");
     headstone = loadImage("./headstoneMain.png"); 
+    heart = loadImage("./heart.png"); 
   }
   public void displayGame()
   {
@@ -42,7 +44,8 @@ public class GameStateManager
       text("Kill Count:  " + killcount, width-100, height -15);
       textAlign(LEFT, BOTTOM);
       fill(230,40,40);
-      text("Lives " + player.lives, 100, height-15);
+      //text("Lives " + player.lives, 100, height-15);
+      drawHearts(player.lives); 
       break;
       
     case WON:
@@ -305,4 +308,15 @@ public class GameStateManager
         fill(255);
       }
   } // end of displayStart
+  
+  public void drawHearts(int numHearts) {
+      int heartWidth = 30;
+      int heartHeight = 30;
+      int startX = 10;
+      int startY = height - 40;
+     for (int i = 0; i < numHearts; i++) {
+        image(heart, startX + i * (heartWidth + 5), startY, heartWidth, heartHeight);
+    }
+    
+  }// end of drawHearts()
 }
