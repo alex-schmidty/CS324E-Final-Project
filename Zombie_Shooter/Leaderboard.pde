@@ -38,11 +38,7 @@ class Leaderboard {
   void display() {
     // Sort the entries by score in descending order
     entries.sort((a, b) -> Integer.compare(b.getScore(), a.getScore()));
-
-    //rectMode(CENTER);
-    //fill(5);
-    //stroke(0, 255, 0);
-    //rect(width/2, height/2, width/1.5, height/1.5);
+    
     leaderboardImg.resize(1200, 0); 
 
     int imgX = width/2 - leaderboardImg.width / 2;
@@ -83,6 +79,11 @@ class Leaderboard {
       fill(255);
     }
     text("Exit", width/2, height/2 + 250);
+    
+    if (mousePressed && mouseX > width/2 - 50 && mouseX < width/2 + 50 && mouseY > height/2 + 225 && mouseY < height/2 + 275) {
+      gsm.displayLeaderboard = false;
+    }
+          
   }
 
 

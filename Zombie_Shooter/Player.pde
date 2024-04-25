@@ -92,8 +92,9 @@ public class Player {
        {
           PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
           bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
-    
-          shootSound.play(); 
+          if (settings.soundEffectsEnabled) {
+            shootSound.play(); 
+          }
        }
     }
     else
@@ -119,13 +120,17 @@ public class Player {
     {
       invincibleTimer.startTimer();
       lives-=1;
-      chompSound.play();
+      if (settings.soundEffectsEnabled) {
+        chompSound.play();
+      }
     }
     if(lives<=0)
     {
       isDead = true;
       sprite.shouldRemove = true;
-      playerDeath.play();
+      if (settings.soundEffectsEnabled) {
+        playerDeath.play();
+      }
       new Anim("PlayerDie", "data",player.pos.copy(), 150, 1.2);
     }
   }

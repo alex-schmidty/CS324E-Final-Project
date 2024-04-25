@@ -28,6 +28,7 @@ Player player;
 Reticle reticle;
 Timer timer; // all classes run on the same timer that way we can start and stop the whole thing
 GameStateManager gsm;
+Settings settings; 
 boolean paused = false;
 Leaderboard leaderboard;
 String playerName;
@@ -37,14 +38,17 @@ String separator = System.getProperty("file.separator");
 
 void setup() {
   fullScreen();
+  
   gameFont = createFont("gamefont.otf", 32);
   textFont(gameFont);
+  
   enemies = new ArrayList<Enemy>();
   bullets = new ArrayList<Bullet>();
   player = new Player();
   reticle = new Reticle(player);
   timer = new Timer(1);
   gsm = new GameStateManager();
+  settings = new Settings(); 
 
   // sound
   playerDeath = new SoundFile(this, "./playerDeath.mp3");
@@ -61,7 +65,6 @@ void setup() {
   leaderboard.loadFromFile("leaderboard.txt");
   playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
   createBackground();
-  //gameSound.jump(8);
 }
 
 void draw()
