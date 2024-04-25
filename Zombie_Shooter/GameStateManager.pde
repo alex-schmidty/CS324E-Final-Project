@@ -80,15 +80,16 @@ public class GameStateManager
       if (keyPressed && key == 'c' || key =='C' )
       {
         rectMode(CENTER);
-        rect(width/2, height/2+250, 300, 175);
-        fill(0);
+        rect(width/2, height/2+245, 300, 200);
+        fill(255);
         textAlign(CENTER);
         textSize(25);
-        text("Move Up: 'W' or UP arrow key", width/2, height/2+200);
-        text("Move Left: 'A' or LEFT arrow key", width/2, height/2+230);
-        text("Move Down: 'S' or DOWN arrow key", width/2, height/2+260);
-        text("Move Right: 'D' or RIGHT arrow key", width/2, height/2+290);
-        text("Shoot: Point and click mouse", width/2, height/2+320);
+        text("Move Up:    'W' or UP arrow key   ", width/2, height/2+180);
+        text("Move Left:  'A' or LEFT arrow key ", width/2, height/2+210);
+        text("Move Down:  'S' or DOWN arrow key " , width/2, height/2+240);
+        text("Move Right: 'D' or RIGHT arrow key", width/2, height/2+270);
+        text("Shoot:   point and click mouse    ", width/2, height/2+300);
+        text("Pause:         Press 'P'           ", width/2, height/2+330);
         fill(255);
       }
       
