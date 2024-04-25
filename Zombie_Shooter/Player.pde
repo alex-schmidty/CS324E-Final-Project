@@ -5,7 +5,8 @@ enum PlayerAnimState
 
 public class Player {
   public Timer gunTimer;
-  public float speed  = 5;
+  public float runSpeed  = 7;
+  public float speedWhileShoot = 3;
   public PVector pos;
   public float pwidth = 50;
   public float pheight = 80;
@@ -83,6 +84,22 @@ public class Player {
   
   public void update()
   {
+    float speed = 0;
+    if(isShooting)
+    {
+       speed = speedWhileShoot;
+       if(gunTimer.activated())
+       {
+          PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
+          bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
+    
+          shootSound.play(); 
+       }
+    }
+    else
+    {
+      speed = runSpeed;
+    }
     //playerType(type);
     numUpdates +=1;
     // move functionality
@@ -90,13 +107,6 @@ public class Player {
     if (isMovingRight && pos.x < width -pwidth) { this.pos.x += speed; }
     if (isMovingUp && pos.y > pwidth) { this.pos.y -= speed;  }
     if (isMovingDown && pos.y < height-pwidth) { this.pos.y += speed;  }
-    if (isShooting && gunTimer.activated())
-    {
-      PVector bulDir = new PVector(mouseX- pos.x, mouseY - pos.y);
-      bullets.add(new Bullet(pos.x, pos.y, bulDir.x, bulDir.y));
-
-      shootSound.play(); 
-    }
     
     if(invincibleTimer.activated())
     {
