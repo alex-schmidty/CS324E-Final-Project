@@ -8,8 +8,8 @@ public class Player {
   public float runSpeed  = 7;
   public float speedWhileShoot = 3;
   public PVector pos;
-  public float pwidth = 50;
-  public float pheight = 80;
+  public float pwidth = 40;
+  public float pheight = 70;
   public boolean isMoving = false,
                  isMovingLeft = false,
                  isMovingRight = false,
