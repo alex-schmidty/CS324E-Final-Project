@@ -72,7 +72,7 @@ void draw()
   if (paused) {
     displayPause(); 
   }
-  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
+  playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name using most up to date leaderboard size
 }
 
 void keyPressed()
