@@ -48,11 +48,11 @@ public class Enemy
           b.shouldRemove = true;
           this.sprite.shouldRemove = true;
           if(type ==1)
-            new Anim("Zombie1" + separator + "Zombie1_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie1" + separator + "Zombie1_Dead", this.pos.copy(), 100, ZOMBIE_SCALE, sprite.isFacingLeft);
           else if(type ==2)
-            new Anim("Zombie2" + separator + "Zombie2_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie2" + separator + "Zombie2_Dead", this.pos.copy(), 100, ZOMBIE_SCALE, sprite.isFacingLeft);
            else if(type ==3)
-            new Anim("Zombie3" + separator + "Zombie3_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie3" + separator + "Zombie3_Dead", this.pos.copy(), 100, ZOMBIE_SCALE, sprite.isFacingLeft);
           hitBullet =true;
           break;
         }

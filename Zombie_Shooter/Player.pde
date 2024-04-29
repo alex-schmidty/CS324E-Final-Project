@@ -131,7 +131,7 @@ public class Player {
       if (settings.soundEffectsEnabled) {
         playerDeath.play();
       }
-      new Anim("PlayerDie", player.pos.copy(), 150, 1.2);
+      new Anim("PlayerDie", player.pos.copy(), 150, 1.2, sprite.isFacingLeft);
     }
   }
 }

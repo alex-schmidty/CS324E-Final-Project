@@ -1,6 +1,7 @@
 class Anim extends Sprite{
-  Anim(String frameLoader, PVector pos, int animSpeed, float size){
+  Anim(String frameLoader, PVector pos, int animSpeed, float size,  boolean isFacingLeft){
     super(frameLoader, pos, animSpeed, size);
+    this.isFacingLeft = isFacingLeft;
   }
   
   void update(){

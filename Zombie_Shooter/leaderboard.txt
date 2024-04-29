@@ -73,3 +73,7 @@ Player71,11,1
 Player72,0,5
 Player73,3,1
 Player74,15,5
+Player75,84,1
+Player76,60,5
+Player77,63,5
+Player78,49,5
