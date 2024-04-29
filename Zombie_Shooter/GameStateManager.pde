@@ -28,9 +28,9 @@ public class GameStateManager extends Thread
   {
     image(bb, 0, 0);
     //display everything
-    for (Bullet bullet : bullets)
+    for(int i = 0; i< bullets.size(); i++)
     {
-      bullet.display();
+      bullets.get(i).display();
     }
     displaySprites();
     switch(state)
@@ -56,6 +56,14 @@ public class GameStateManager extends Thread
       fill(230, 40, 40);
       reticle.createRet();
       drawHearts(player.lives);
+      int heartWidth = 10;
+      int heartHeight = 10;
+      float startX = player.pos.x - (player.lives*heartWidth+10)/2;
+      float startY = player.pos.y - player.pheight;
+      for (int i = 0; i < player.lives; i++) 
+      {
+        image(heart, startX + i * (heartWidth + 5), startY, heartWidth, heartHeight);
+      }
       break;
 
     case WON:
@@ -347,7 +355,6 @@ public class GameStateManager extends Thread
   }// end of drawHearts()
   public void run()
   {
-   
       try
       {
         while(true)
