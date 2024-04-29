@@ -48,11 +48,11 @@ public class Enemy
           b.shouldRemove = true;
           this.sprite.shouldRemove = true;
           if(type ==1)
-            new Anim("Zombie1" + separator + "Zombie1_Dead", "Zombie1", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie1" + separator + "Zombie1_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
           else if(type ==2)
-            new Anim("Zombie2" + separator + "Zombie2_Dead", "Zombie2", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie2" + separator + "Zombie2_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
            else if(type ==3)
-            new Anim("Zombie3" + separator + "Zombie3_Dead", "Zombie3", this.pos.copy(), 100, ZOMBIE_SCALE);
+            new Anim("Zombie3" + separator + "Zombie3_Dead", this.pos.copy(), 100, ZOMBIE_SCALE);
           hitBullet =true;
           break;
         }
@@ -67,35 +67,35 @@ public class Enemy
     {
       if(random(2)>1)
       {
-        this.sprite = new Sprite("Zombie1" + separator + "Zombie1Walk", "Zombie1", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie1" + separator + "Zombie1Walk",  this.pos, 100, ZOMBIE_SCALE);
         speed = 2;
       }
       else
       {
-        this.sprite = new Sprite("Zombie1" + separator + "Zombie1Run", "Zombie1", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie1" + separator + "Zombie1Run", this.pos, 100, ZOMBIE_SCALE);
         speed = 4;
       }
       
     } else if(type == 2){
       if(random(2)>1)
       {
-        this.sprite = new Sprite("Zombie2" + separator + "Zombie2Walk", "Zombie2", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie2" + separator + "Zombie2Walk", this.pos, 100, ZOMBIE_SCALE);
         speed = 2;
       }
       else
       {
-        this.sprite = new Sprite("Zombie2" + separator + "Zombie2Run", "Zombie2", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie2" + separator + "Zombie2Run", this.pos, 100, ZOMBIE_SCALE);
         speed = 4;
       }
     } else if(type == 3){
       if(random(2)>1)
       {
-        this.sprite = new Sprite("Zombie3" + separator + "Zombie3Walk", "Zombie3", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie3" + separator + "Zombie3Walk", this.pos, 100, ZOMBIE_SCALE);
         speed = 2;
       }
       else
       {
-        this.sprite = new Sprite("Zombie3" + separator + "Zombie3Run", "Zombie3", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie3" + separator + "Zombie3Run", this.pos, 100, ZOMBIE_SCALE);
         speed = 4;
       }
     }

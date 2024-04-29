@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
+// all sprites must be entered here so they can be loaded at the beginning of the game. Format is {"frameLoader/spriteName", "location"}
 ArrayList<Sprite> allSprites = new ArrayList<Sprite>();
 HashMap<String, ArrayList<PImage>> imgDict = new HashMap<String, ArrayList<PImage>>();
-
 String[][] spriteInfo = {{"Zombie1" + separator + "Zombie1Walk", "Zombie1"}, 
                          {"Zombie1" + separator + "Zombie1Run", "Zombie1"}, 
                          {"Zombie1" + separator + "Zombie1_Dead", "Zombie1"},
@@ -41,18 +41,14 @@ class Sprite{
   int numImages, currentImage;
   //ArrayList<PImage> images;
   String spriteName;
-  String loc;
   Timer timer;
   float size;
   boolean shouldRemove, isFacingLeft;
   PVector shift, pos;
 
-  Sprite(String frameLoader, String loc, PVector pos, int animSpeed, float size){
+  Sprite(String frameLoader, PVector pos, int animSpeed, float size){
     allSprites.add(this);
     this.spriteName = frameLoader;
-    this.loc = loc;
-    //loadImages(frameLoader, loc);
-    //this.numImages = this.images.size();
     this.currentImage = 0;
     this.pos = pos;
     this.timer = new Timer(animSpeed);
@@ -60,24 +56,7 @@ class Sprite{
     this.size = size;
     this.shouldRemove = false;
     this.isFacingLeft = false;
-    //numImages = imgDict.get(this.spriteName).size();
   }
-  
-  //void loadImages(String frameLoader, String loc)
-  //{
-  //  String[] lines = loadStrings(frameLoader + ".txt");
-  //  if(!imgDict.containsKey(frameLoader))
-  //  {
-  //    ArrayList<PImage> images = new ArrayList<PImage>();
-  //    for (int i = 0; i < lines.length; i++)
-  //    {
-  //      String line = lines[i];
-  //      images.add(loadImage(loc + separator +line + ".png"));
-  //      imgDict.put(frameLoader, images);
-  //    }
-  //  }
-  //  numImages = lines.length;
-  //}
   
   void display()
   {

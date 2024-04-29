@@ -29,7 +29,7 @@ public class Player {
     numUpdates = 0;
     gunTimer = new Timer(300);
     gunTimer.startTimer();
-    this.sprite = new Sprite("PlayerIdle", "data", pos, 200, 1.3);
+    this.sprite = new Sprite("PlayerIdle", pos, 200, 1.3);
     animState = PlayerAnimState.IDLE;
     invincibleTimer = new Timer(1000);
   }
@@ -44,7 +44,7 @@ public class Player {
     gunTimer = new Timer(400);
     gunTimer.startTimer();
     this.sprite.shouldRemove = true;
-    this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
+    this.sprite = new Sprite("PlayerIdle", pos, 100, 1.3);
     
   }
   public void switchSprite()
@@ -55,7 +55,7 @@ public class Player {
       {
         animState = PlayerAnimState.RUNNING;
         this.sprite.shouldRemove = true;
-        this.sprite = new Sprite("PlayerRun", "data", pos, 100, 1.3);
+        this.sprite = new Sprite("PlayerRun", pos, 100, 1.3);
       }
     }
     else if(isShooting)
@@ -64,7 +64,7 @@ public class Player {
       {
         animState = PlayerAnimState.SHOOTING;
         this.sprite.shouldRemove = true;
-        this.sprite = new Sprite("PlayerShoot", "data", pos, 100, 1.3);
+        this.sprite = new Sprite("PlayerShoot", pos, 100, 1.3);
       }
     }
     else
@@ -73,7 +73,7 @@ public class Player {
       {
         animState = PlayerAnimState.IDLE;
         this.sprite.shouldRemove = true;
-        this.sprite = new Sprite("PlayerIdle", "data", pos, 100, 1.3);
+        this.sprite = new Sprite("PlayerIdle", pos, 100, 1.3);
       }
     }
     if(isMovingLeft)
@@ -131,7 +131,7 @@ public class Player {
       if (settings.soundEffectsEnabled) {
         playerDeath.play();
       }
-      new Anim("PlayerDie", "data",player.pos.copy(), 150, 1.2);
+      new Anim("PlayerDie", player.pos.copy(), 150, 1.2);
     }
   }
 }

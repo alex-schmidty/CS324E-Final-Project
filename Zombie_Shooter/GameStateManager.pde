@@ -54,7 +54,7 @@ public class GameStateManager extends Thread
       text("Kill Count:  " + killcount, width-100, height -15);
       textAlign(LEFT, BOTTOM);
       fill(230, 40, 40);
-      //text("Lives " + player.lives, 100, height-15);
+      reticle.createRet();
       drawHearts(player.lives);
       break;
 
@@ -157,7 +157,6 @@ public class GameStateManager extends Thread
           // update player
           player.switchSprite();
           player.update();
-          reticle.createRet();
           // update bullets
           for (Bullet bullet : bullets) {
             bullet.update();
