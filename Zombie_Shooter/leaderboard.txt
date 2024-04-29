@@ -5,11 +5,13 @@ Player7,175,5
 Player21,172,5
 Player66,121,1
 Player61,117,3
+Player80,113,1
 Player20,111,5
 Player67,109,5
 Player27,99,4
 Player19,92,5
 Player51,91,5
+Player84,86,1
 Player9,84,1
 Player18,84,1
 Player75,84,1
@@ -22,11 +24,13 @@ Player63,66,3
 Player77,63,5
 Player76,60,5
 Player60,50,1
+Player83,50,1
 Player70,49,5
 Player78,49,5
 Player17,36,1
 Player49,36,5
 Player47,30,5
+Player81,30,1
 Player62,27,5
 Player24,26,5
 Player6,23,5
@@ -36,6 +40,7 @@ Player74,15,5
 Player8,11,1
 Player48,11,5
 Player71,11,1
+Player82,9,1
 Player30,8,2
 Player29,7,3
 Player65,7,1
@@ -78,8 +83,4 @@ Player45,0,3
 Player54,0,1
 Player69,0,1
 Player72,0,5
-Player80,113,1
-Player81,30,1
-Player82,9,1
-Player83,50,1
-Player84,86,1
+Player85,9,1
