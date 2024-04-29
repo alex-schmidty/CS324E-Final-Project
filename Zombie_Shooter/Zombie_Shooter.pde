@@ -12,11 +12,7 @@ SoundFile lobbySound;
 SoundFile buttonClick;
 SoundFile chompSound;
 
-// Game States
-public enum State
-{
-  START, PLAYING, WON, LOST;
-}
+
 
 // variables that all classes need
 ArrayList<Bullet> bullets;
@@ -47,7 +43,6 @@ void setup() {
   player = new Player();
   reticle = new Reticle(player);
   timer = new Timer(1);
-  gsm = new GameStateManager();
   settings = new Settings(); 
 
   // sound
@@ -65,12 +60,15 @@ void setup() {
   leaderboard.loadFromFile("leaderboard.txt");
   playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
   createBackground();
+  
+  loadAllSprites();
+  gsm = new GameStateManager();
+  gsm.start(); 
 }
 
 void draw()
 {
   gsm.displayGame();
-  gsm.updateGame();
   drawEdge();
   if (paused) {
     displayPause(); 

@@ -72,7 +72,7 @@ public class Enemy
       }
       else
       {
-        this.sprite = new Sprite("Zombie1" + separator + "Zombie1", "Zombie1", this.pos, 100, ZOMBIE_SCALE);
+        this.sprite = new Sprite("Zombie1" + separator + "Zombie1Run", "Zombie1", this.pos, 100, ZOMBIE_SCALE);
         speed = 4;
       }
       

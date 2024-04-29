@@ -1,6 +1,12 @@
-public class GameStateManager
+// Game States
+public enum GameState
 {
-  public State state;
+  START, PLAYING, WON, LOST;
+}
+public class GameStateManager extends Thread
+{
+
+  public GameState state;
   public PImage logo;
   public PImage headstone;
   public PImage heart;
@@ -13,7 +19,7 @@ public class GameStateManager
 
   public GameStateManager()
   {
-    this.state= State.START;
+    this.state= GameState.START;
     logo = loadImage("./ZOMBIE-ATTACK.png");
     headstone = loadImage("./headstoneMain.png");
     heart = loadImage("./heart.png");
@@ -96,7 +102,7 @@ public class GameStateManager
               mouseY > height/2 - padding/2 &&
               mouseY < height/2 + padding/2)
             {
-              state = State.PLAYING;
+              state = GameState.PLAYING;
               difficulty = i;
               player.pos.x = width/2;
               player.pos.y = height/2;
@@ -177,7 +183,7 @@ public class GameStateManager
           if (player.isDead)
           {
             timer.pauseTimer();
-            state = State.LOST;
+            state = GameState.LOST;
           }
 
           // advance to next round
@@ -190,7 +196,7 @@ public class GameStateManager
             if (round > 30)
             {
               timer.pauseTimer();
-              state=State.WON;
+              state=GameState.WON;
             }
           }
         }
@@ -225,7 +231,7 @@ public class GameStateManager
     }
     killcntmax = max(killcount, killcntmax);
     killcount = 0;
-    state = State.START;
+    state = GameState.START;
     round = 0;
     top10 = false;
   }
@@ -340,5 +346,21 @@ public class GameStateManager
       image(heart, startX + i * (heartWidth + 5), startY, heartWidth, heartHeight);
     }
   }// end of drawHearts()
-  
+  public void run()
+  {
+   
+      try
+      {
+        while(true)
+        {
+          updateGame();
+          this.sleep(10);
+        }
+      }
+      catch(Exception e)
+      {
+        println(e.toString());
+      }
+    
+  }
 }
