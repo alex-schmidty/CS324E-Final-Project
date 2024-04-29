@@ -35,6 +35,10 @@ String separator = System.getProperty("file.separator");
 void setup() {
   fullScreen();
   
+  // set up background and draw so player is not staring at blank screen
+  createBackground();
+  image(bb,0,0);
+  
   gameFont = createFont("gamefont.otf", 32);
   textFont(gameFont);
   
@@ -59,7 +63,7 @@ void setup() {
   leaderboard = new Leaderboard();
   leaderboard.loadFromFile("leaderboard.txt");
   playerName = "Player" + leaderboard.getLeaderboardSize(); // Generate a default name
-  createBackground();
+ 
   
   loadAllSprites();
   gsm = new GameStateManager();
