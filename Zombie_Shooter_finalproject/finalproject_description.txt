@@ -1,0 +1,15 @@
+Overall, we all worked on bits and pieces of each other's classes. The only change we made was to make a reticle rather than a gun that points from the soldier's position due to the fact that the sprite we found already contains a gun for the soldier. One challenge we approached was working things to fit properly on the screen sized canvas being that some screens are different sizes.
+
+Classes & Delegation:
+
+Main file: Zombie Shooter finalproject
+- This file defines all the variables that are needed for all classes and sets them in setup(). In draw() it calls the necessary methods to make each class run properly. Below, it defines the functionality of the program controlling the reaction to mouse clicks, keyboard presses, main screen display, and pause screen display 
+
+Tiffany:
+- worked on the GameStateManager, Settings, Leaderboard/LeaderboardEntry classes and the sound. She designed the main GUI's in our game and how the states of the game were handled. These classes control how the player enters/exits the game, how they maneuver the main screen, how each state of the game appears, toggle sound off and on, and handles the data save/entry to display the top players on the leaderboard.
+
+Zach:
+- worked on the player class, reticle class, bullet class, and the functionality defined in the main file. I also edited some of the displays to make them appear more natural and fit to the screen, as well as the player sprite. The player class works to control the nature of the soldier that appears on screen, while the reticle shows a second level of hierarchy by surrounding the soldier in the direction of the mouse. The bullet class launches an ellipse in the direction it is fired. 
+
+Alex:
+- worked on the Sprite, Timer, Enemy, and animation classes. The Enemy class controls the nature of the zombies: how they spawn, how they move, how they inflict damage and how they are created. Sprite class is used to create the characters that you see, such as the zombies. The animation class creates the quick animations that appear on screen such as a zombie death. The timer class is used in many pieces of our code to control how the game runs, such as pause.

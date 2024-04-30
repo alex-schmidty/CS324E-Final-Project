@@ -1,6 +1,0 @@
-PlayerIdle0
-PlayerIdle1
-PlayerIdle2
-PlayerIdle3
-PlayerIdle4
-PlayerIdle5

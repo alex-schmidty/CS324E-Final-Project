@@ -1,0 +1,89 @@
+import java.util.HashMap;
+
+ArrayList<Sprite> allSprites = new ArrayList<Sprite>();
+HashMap<String, ArrayList<PImage>> imgDict = new HashMap<String, ArrayList<PImage>>();
+
+class Sprite{
+  int numImages, currentImage;
+  //ArrayList<PImage> images;
+  String spriteName;
+  String loc;
+  Timer timer;
+  float size;
+  boolean shouldRemove, isFacingLeft;
+  PVector shift, pos;
+
+  Sprite(String frameLoader, String loc, PVector pos, int animSpeed, float size){
+    allSprites.add(this);
+    this.spriteName = frameLoader;
+    this.loc = loc;
+    loadImages(frameLoader, loc);
+    //this.numImages = this.images.size();
+    this.currentImage = 0;
+    this.pos = pos;
+    this.timer = new Timer(animSpeed);
+    this.timer.startTimer();
+    this.size = size;
+    this.shouldRemove = false;
+    this.isFacingLeft = false;
+  }
+  
+  void loadImages(String frameLoader, String loc)
+  {
+    ArrayList<PImage> images = new ArrayList<PImage>();
+    String[] lines = loadStrings(frameLoader + ".txt");
+    if(!imgDict.containsKey(frameLoader))
+    {
+       for (int i = 0; i < lines.length; i++)
+      {
+        String line = lines[i];
+        images.add(loadImage(loc+"//"+line + ".png"));
+        imgDict.put(frameLoader, images);
+      }
+    }
+   
+    numImages = lines.length;
+  }
+  
+  void display()
+  {
+    pushMatrix();
+    PImage img = imgDict.get(this.spriteName).get(currentImage);
+    if(isFacingLeft)
+    {      
+      translate(this.pos.x + size*img.width/2, this.pos.y - size*img.height/2);
+      scale(- this.size, this.size); 
+    }
+    else
+    {
+      translate(this.pos.x - size*img.width/2, this.pos.y - size*img.height/2);
+      scale(this.size);
+    }
+    image(img, 0, 0);
+    popMatrix();
+  }
+  
+  void update()
+  {
+    if (this.timer.activated()){
+      this.currentImage = (currentImage + 1) % numImages;
+      this.timer.startTimer();
+    }
+  }
+}
+
+void displaySprites()
+{
+  for(Sprite sprite: allSprites)
+  {
+    sprite.display();
+  }
+}
+void updateSprites()
+{
+  for(int i = 0; i<allSprites.size(); i++)
+  {
+     allSprites.get(i).update();
+     if(allSprites.get(i).shouldRemove){ allSprites.remove(i--); }
+  }
+}
